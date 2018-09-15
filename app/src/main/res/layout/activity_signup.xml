@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_signup"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.arnavdesai.burrp.Signup"
+    android:orientation="vertical">
+
+    <TextView
+        android:text="@string/Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/NameText" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/NameEdit" />
+
+    <TextView
+        android:text="@string/College"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/CollegeText" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/CollegeEdit" />
+
+    <TextView
+        android:text="@string/PhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/PhoneText" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/PhoneEdit" />
+
+    <TextView
+        android:text="@string/Email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/EmailText" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/EmailEdit" />
+
+    <TextView
+        android:text="@string/Password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/PasswordText" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/PasswordEdit" />
+
+    <Button
+        android:text="@string/SignupButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/signupButton"
+        android:layout_marginTop="160dp"
+        style="@style/Widget.AppCompat.Button" />
+
+</LinearLayout>

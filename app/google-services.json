@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "630414991484",
+    "firebase_url": "https://burrp-c5ac6.firebaseio.com",
+    "project_id": "burrp-c5ac6",
+    "storage_bucket": "burrp-c5ac6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630414991484:android:0442f6a7b5b2c9c2",
+        "android_client_info": {
+          "package_name": "com.example.arnavdesai.burrp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630414991484-e5j7gq42cmiatm4g3bl42ac019hl5bo1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.arnavdesai.burrp",
+            "certificate_hash": "c778b463d436f411fdd72ae9d04b20b39ee9bc65"
+          }
+        },
+        {
+          "client_id": "630414991484-9qjqbhq5sr58rqtch77jg93f0v0mkuqa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmqohgf8ROg_uE6b9u9MHeAEp4F_VpLWw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630414991484-9qjqbhq5sr58rqtch77jg93f0v0mkuqa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
