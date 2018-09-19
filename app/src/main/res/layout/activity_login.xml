@@ -12,7 +12,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:text="@string/Name"
+        android:text="@string/Email"
         android:layout_width="match_parent"
         android:id="@+id/LoginText"
         android:layout_height="40dp" />

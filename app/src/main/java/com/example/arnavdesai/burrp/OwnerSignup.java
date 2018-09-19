@@ -68,12 +68,10 @@ public class OwnerSignup extends AppCompatActivity implements View.OnClickListen
     public void owneradd() throws NullPointerException
     {
         Owner owner=new Owner(name.getText().toString().trim(), messName.getText().toString().trim(), address.getText().toString().trim(), email.getText().toString().trim(), phone.getText().toString().trim(), password.getText().toString().trim());
-        userID=databaseReference.push().getKey();
-        Log.d("Burrp",userID);
-        databaseReference.child(userID).setValue(owner);
+        databaseReference.child(messName.getText().toString().trim()).setValue(owner);
 
         Intent intent=new Intent(OwnerSignup.this, OwnerMenu.class);
-        intent.putExtra("userID", userID);
+        intent.putExtra("messName", owner.getMessName());
         startActivity(intent);
     }
 

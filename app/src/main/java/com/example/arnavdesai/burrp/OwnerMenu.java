@@ -30,7 +30,6 @@ public class OwnerMenu extends AppCompatActivity {
     private TextView messName,messAddress,messEmail,messPhone;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
-    private FirebaseAuth.AuthStateListener authStateListener;
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
     private String userID;
@@ -43,10 +42,10 @@ public class OwnerMenu extends AppCompatActivity {
         messAddress=(TextView) findViewById(R.id.MessAddressText);
         messEmail=(TextView) findViewById(R.id.EmailText);
         messPhone=(TextView) findViewById(R.id.PhoneNumberText);
-        userID=getIntent().getStringExtra("userID");
+        userID=getIntent().getStringExtra("messName");
         Log.d("Burrp",userID);
 
-        
+
         firebaseAuth=FirebaseAuth.getInstance();
         databaseReference=firebaseDatabase.getInstance().getReference("Owner");
 

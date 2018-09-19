@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.arnavdesai.burrp.R;
 
 import static android.R.attr.start;
+import static com.example.arnavdesai.burrp.R.id.addressTextfield;
 
 /**
  * Created by Arnav Desai on 9/7/2018.
@@ -24,24 +25,26 @@ public class CustomListAdapter extends ArrayAdapter{
     private final Activity context;
     private final String[] nameArray;
     private final String[] addressArray;
+    private final String[] ratingArray;
     private RatingBar ratingBar;
 
-    public CustomListAdapter(Activity context, String[] nameArray, String[] addressArray)
+    public CustomListAdapter(Activity context, String[] nameArray, String[] addressArray, String[] ratingArray)
     {
         super(context, R.layout.listview_row, nameArray);
 
         this.context=context;
         this.nameArray=nameArray;
         this.addressArray=addressArray;
+        this.ratingArray=ratingArray;
     }
 
-    public View getView(int position, View view, ViewGroup parent)
+    public View getView(final int position, View view, ViewGroup parent)
     {
         LayoutInflater inflater=context.getLayoutInflater();
         View rowView =inflater.inflate(R.layout.listview_row, null, true);
         ratingBar=(RatingBar) rowView.findViewById(R.id.ratingBar);
 
-        ratingBar.setRating(Float.parseFloat("4.2"));
+        ratingBar.setRating(Float.parseFloat(ratingArray[0]));
 
         Button nameButton =(Button) rowView.findViewById(R.id.button2);
         TextView addressTextfield =(TextView) rowView.findViewById(R.id.addressTextfield);
@@ -49,7 +52,9 @@ public class CustomListAdapter extends ArrayAdapter{
         nameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Messy", "clicked");
+                Intent intent=new Intent(context, messDetails.class);
+                intent.putExtra("messName", nameArray[position]);
+                context.startActivity(intent);
             }
         });
 
