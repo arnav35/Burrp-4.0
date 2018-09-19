@@ -45,6 +45,7 @@ public class OwnerMenu extends AppCompatActivity {
         messPhone=(TextView) findViewById(R.id.PhoneNumberText);
         userID=getIntent().getStringExtra("userID");
         Log.d("Burrp",userID);
+
         
         firebaseAuth=FirebaseAuth.getInstance();
         databaseReference=firebaseDatabase.getInstance().getReference("Owner");
