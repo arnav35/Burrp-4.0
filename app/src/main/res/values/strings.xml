@@ -8,4 +8,9 @@
     <string name="PhoneNumber">Phone Number</string>
     <string name="Email">Email</string>
     <string name="Password">Password</string>
+    <string name="Mess">Mess/Hotel Name</string>
+    <string name="Address">Address</string>
+    <string name="Student">Student</string>
+    <string name="Owner">Owner</string>
+    <string name="MessTitle">Mess List</string>
 </resources>

@@ -11,4 +11,37 @@
     tools:context="com.example.arnavdesai.burrp.Login"
     android:orientation="vertical">
 
+    <TextView
+        android:text="@string/Name"
+        android:layout_width="match_parent"
+        android:id="@+id/LoginText"
+        android:layout_height="40dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/LoginNameEdit" />
+
+    <TextView
+        android:text="@string/Password"
+        android:layout_width="match_parent"
+        android:id="@+id/LoginPasswordText"
+        android:layout_height="40dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/LoginPasswordEdit" />
+
+    <Button
+        android:text="@string/LoginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/LoginButton"
+        android:layout_marginTop="160dp" />
+
 </LinearLayout>
