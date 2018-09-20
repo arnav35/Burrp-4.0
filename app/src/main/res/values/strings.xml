@@ -13,4 +13,9 @@
     <string name="Student">Student</string>
     <string name="Owner">Owner</string>
     <string name="MessTitle">Mess List</string>
+    <string name="AddMenu">Add Menu Item</string>
+    <string name="NoofItem">Enter Number of Menu Item to add</string>
+    <string name="Add">Add</string>
+    <string name="Enter">Enter</string>
+    <string name="AddDailyMenu">Add Daily Menu</string>
 </resources>

@@ -3,6 +3,7 @@ package com.example.arnavdesai.burrp;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,14 +24,12 @@ public class Menu extends AppCompatActivity {
     private FirebaseUser firebaseUser;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Owner");
+    int count=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
-        nameArray=new String[10];
-        addressArray=new String[10];
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -43,19 +42,28 @@ public class Menu extends AppCompatActivity {
 
             }
         });
-
-        CustomListAdapter customListAdapter=new CustomListAdapter(this, nameArray, addressArray, ratingArray);
-        listview=(ListView) findViewById(R.id.listviewID);
-        listview.setAdapter(customListAdapter);
     }
 
     private void showData(DataSnapshot dataSnapshot) throws NullPointerException {
+
+        count=(int) dataSnapshot.getChildrenCount();
+        nameArray=new String[count];
+        addressArray=new String[count];
+
         int i=0;
         for (DataSnapshot ds : dataSnapshot.getChildren()) {
             Owner owner=ds.getValue(Owner.class);
             nameArray[i]=owner.getMessName();
             addressArray[i]=owner.getAddress();
-            break;
+            i++;
         }
+
+        CustomListAdapter customListAdapter=new CustomListAdapter(this, nameArray, addressArray, ratingArray);
+        listview=(ListView) findViewById(R.id.listviewID);
+        listview.setAdapter(customListAdapter);
+    }
+    void getCount(DataSnapshot dataSnapshot) throws NullPointerException
+    {
+        count=(int)dataSnapshot.getChildrenCount();
     }
 }

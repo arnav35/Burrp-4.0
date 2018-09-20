@@ -52,7 +52,7 @@ public class CustomListAdapter extends ArrayAdapter{
         nameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, messDetails.class);
+                Intent intent=new Intent(context, StudentMenu.class);
                 intent.putExtra("messName", nameArray[position]);
                 context.startActivity(intent);
             }

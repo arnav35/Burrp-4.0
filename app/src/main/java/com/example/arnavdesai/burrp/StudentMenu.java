@@ -1,34 +1,19 @@
 package com.example.arnavdesai.burrp;
 
-import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
-
-import static android.R.attr.data;
-import static android.R.attr.value;
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
-import static android.os.Build.VERSION_CODES.O;
-
-public class OwnerMenu extends AppCompatActivity implements View.OnClickListener{
+public class StudentMenu extends AppCompatActivity {
 
     private TextView messName,messAddress,messEmail,messPhone;
     private FirebaseDatabase firebaseDatabase;
@@ -36,23 +21,16 @@ public class OwnerMenu extends AppCompatActivity implements View.OnClickListener
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
     private String userID;
-    private Button addmenu,addDailyMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_owner_menu);
+        setContentView(R.layout.activity_student_menu);
 
         messName=(TextView) findViewById(R.id.MessNameText);
         messAddress=(TextView) findViewById(R.id.MessAddressText);
         messEmail=(TextView) findViewById(R.id.EmailText);
         messPhone=(TextView) findViewById(R.id.PhoneNumberText);
-        addmenu=(Button) findViewById(R.id.addMenuItem);
-        addDailyMenu=(Button) findViewById(R.id.addDailyMenu);
-
-        addDailyMenu.setOnClickListener(this);
-        addmenu.setOnClickListener(this);
-
         userID=getIntent().getStringExtra("messName");
 
         firebaseAuth=FirebaseAuth.getInstance();
@@ -72,28 +50,12 @@ public class OwnerMenu extends AppCompatActivity implements View.OnClickListener
     }
 
     private void showData(DataSnapshot dataSnapshot) throws NullPointerException{
+        Owner owner= dataSnapshot.child(userID).getValue(Owner.class);
 
-            Owner owner= dataSnapshot.child(userID).getValue(Owner.class);
+        messName.setText(owner.getMessName());
+        messAddress.setText(owner.getAddress());
+        messEmail.setText(owner.getEmail());
+        messPhone.setText(owner.getPhone());
 
-            messName.setText(owner.getMessName());
-            messAddress.setText(owner.getAddress());
-            messEmail.setText(owner.getEmail());
-            messPhone.setText(owner.getPhone());
-    }
-
-    @Override
-    public void onClick(View v)
-    {
-        if(v == addmenu)
-        {
-            Intent intent=new Intent(OwnerMenu.this, addMenu.class);
-            intent.putExtra("messName", messName.getText().toString().trim());
-            startActivity(intent);
-        }
-        if(v == addDailyMenu)
-        {
-            Intent intent=new Intent(OwnerMenu.this, Add_Menu.class);
-            startActivity(intent);
-        }
     }
 }

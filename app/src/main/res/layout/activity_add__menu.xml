@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addmenu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Add_Menu">
+
+
+    <TextView
+        android:id="@+id/tvbhaji"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter Todays Menu"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/etbhaji1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="bhaji1"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etbhaji2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="bhaji2"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etbhaji3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="bhaji3" />
+
+    <Button
+        android:id="@+id/btsave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="save" />
+</LinearLayout>

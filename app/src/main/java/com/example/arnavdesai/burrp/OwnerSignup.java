@@ -25,10 +25,8 @@ public class OwnerSignup extends AppCompatActivity implements View.OnClickListen
     private EditText name,messName,address,email,phone,password;
     private Button ownerBut;
     private FirebaseAuth firebaseAuth;
-    private FirebaseUser firebaseUser;
-    private FirebaseDatabase firebaseDatabase;
-    private FirebaseAuth.AuthStateListener authStateListener;
     private DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Owner");
+    private FirebaseDatabase firebaseDatabase;
     private  String userID;
 
     @Override
