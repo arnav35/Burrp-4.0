@@ -5,7 +5,7 @@ package com.example.arnavdesai.burrp;
  */
 
 public class Owner {
-    public String name,messName,address,email,phone,password;
+    public String name,messName,address,email,phone,password,type;
 
     public Owner() {
     }
@@ -17,6 +17,7 @@ public class Owner {
         this.email = email;
         this.phone = phone;
         this.password = password;
+        type="Owner";
     }
 
     public String getName() {

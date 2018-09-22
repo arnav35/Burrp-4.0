@@ -35,14 +35,14 @@ public class addMenu extends AppCompatActivity implements View.OnClickListener{
     private View linearLayout;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Menu");
-    String messName;
+    String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_menu);
 
-        messName=getIntent().getStringExtra("messName");
+        uid=getIntent().getStringExtra("uid");
 
         linearLayout=findViewById(R.id.activity_add_menu);
         numberofItem=(EditText) findViewById(R.id.noOfItem);
@@ -91,11 +91,9 @@ public class addMenu extends AppCompatActivity implements View.OnClickListener{
 
         IndividualMenu menu=new IndividualMenu(name,price);
 
-        databaseReference.child(messName).setValue(menu);
+        databaseReference.child(uid).setValue(menu);
 
-        Intent intent=new Intent(addMenu.this, OwnerMenu.class);
-        intent.putExtra("messName",messName);
-        startActivity(intent);
+        finish();
     }
 
     @Override

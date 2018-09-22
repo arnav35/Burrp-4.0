@@ -19,14 +19,15 @@ public class Add_Menu extends AppCompatActivity implements View.OnClickListener 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
-    private String userID,messName;
+    private String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__menu);
 
-        messName=getIntent().getStringExtra("messName");
+        userID=getIntent().getStringExtra("uid");
+
         bhaji1=(EditText)findViewById(R.id.etbhaji1);
         bhahi2=(EditText)findViewById(R.id.etbhaji2);
         bhaji3=(EditText)findViewById(R.id.etbhaji3);
@@ -42,7 +43,7 @@ public class Add_Menu extends AppCompatActivity implements View.OnClickListener 
     {
         MenuCard menuCard=new MenuCard(bhaji1.getText().toString().trim(), bhahi2.getText().toString().trim(), bhaji3.getText().toString().trim());
 
-        databaseReference.child(messName).setValue(menuCard);
+        databaseReference.child(userID).setValue(menuCard);
         finish();
     }
     @Override

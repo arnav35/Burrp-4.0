@@ -53,7 +53,7 @@ public class OwnerMenu extends AppCompatActivity implements View.OnClickListener
         addDailyMenu.setOnClickListener(this);
         addmenu.setOnClickListener(this);
 
-        userID=getIntent().getStringExtra("messName");
+        userID=getIntent().getStringExtra("uid");
 
         firebaseAuth=FirebaseAuth.getInstance();
         databaseReference=firebaseDatabase.getInstance().getReference("Owner");
@@ -87,12 +87,13 @@ public class OwnerMenu extends AppCompatActivity implements View.OnClickListener
         if(v == addmenu)
         {
             Intent intent=new Intent(OwnerMenu.this, addMenu.class);
-            intent.putExtra("messName", messName.getText().toString().trim());
+            intent.putExtra("uid", userID);
             startActivity(intent);
         }
         if(v == addDailyMenu)
         {
             Intent intent=new Intent(OwnerMenu.this, Add_Menu.class);
+            intent.putExtra("uid",userID);
             startActivity(intent);
         }
     }

@@ -25,9 +25,10 @@ public class OwnerSignup extends AppCompatActivity implements View.OnClickListen
     private EditText name,messName,address,email,phone,password;
     private Button ownerBut;
     private FirebaseAuth firebaseAuth;
-    private DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Owner");
+    private DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
     private FirebaseDatabase firebaseDatabase;
     private  String userID;
+    int flag=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class OwnerSignup extends AppCompatActivity implements View.OnClickListen
         ownerBut.setOnClickListener(this);
     }
 
-    public void ownerSignup(String email, String password)
+/*    public void ownerSignup(String email, String password)
     {
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -82,4 +83,47 @@ public class OwnerSignup extends AppCompatActivity implements View.OnClickListen
             owneradd();
         }
     }
+}*/
+public void ownerSignup(final String email, final String password)
+{
+    firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        @Override
+        public void onComplete(@NonNull Task<AuthResult> task) {
+            if(task.isSuccessful())
+            {
+                Toast.makeText(OwnerSignup.this, "Signup successful" ,Toast.LENGTH_SHORT).show();
+                firebaseAuth.signInWithEmailAndPassword(email, password); //Signed in to set uid to object in firebase.
+                owneradd();
+            }
+            if(!task.isSuccessful())
+            {
+                Toast.makeText(OwnerSignup.this, "Signup unsuccessful. Email already exists." ,Toast.LENGTH_SHORT).show();
+            }
+        }
+    });
 }
+
+    public void owneradd() throws NullPointerException
+    {
+        Owner owner=new Owner(name.getText().toString().trim(), messName.getText().toString().trim(), address.getText().toString().trim(), email.getText().toString().trim(), phone.getText().toString().trim(), password.getText().toString().trim());
+
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        String uid = firebaseUser.getUid();
+        databaseReference.child("AllUsers").child(uid).setValue(owner);
+        databaseReference.child("Owner").child(uid).setValue(owner);
+
+        Intent intent=new Intent(OwnerSignup.this, OwnerMenu.class);
+        intent.putExtra("uid",uid);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View view)
+    {
+        if(view == ownerBut)
+        {
+            ownerSignup(email.getText().toString().trim(), password.getText().toString().trim());
+        }
+    }
+}
+

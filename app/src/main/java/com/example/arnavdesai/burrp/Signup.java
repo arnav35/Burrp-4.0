@@ -1,5 +1,6 @@
 package com.example.arnavdesai.burrp;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
+    int flag=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
         SignupButt.setOnClickListener(this);
     }
 
-    public void createUser(String email, String password)
+    /*public void createUser(String email, String password)
     {
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -74,4 +76,45 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
             addToDatabase();
         }
     }
+}*/
+    public void createUser(final String email, final String password)
+    {
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful())
+                {
+                    Toast.makeText(Signup.this, "Signup Successful Hello "+Name.getText().toString(),Toast.LENGTH_SHORT).show();
+                    firebaseAuth.signInWithEmailAndPassword(email, password);
+                    addToDatabase();
+                }
+                else
+                {
+                    Toast.makeText(Signup.this, "Signup Failed. Email already exists. ",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public void addToDatabase() throws  NullPointerException
+    {
+        Student student=new Student(Name.getText().toString().trim(), College.getText().toString().trim(), Phone.getText().toString().trim(), Email.getText().toString().trim(), Password.getText().toString().trim());
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        String uid = firebaseUser.getUid();
+        databaseReference.child("Student").child(uid).setValue(student);
+        databaseReference.child("AllUsers").child(uid).setValue(student);
+
+        Intent intent=new Intent(Signup.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View view)
+    {
+        if(view == SignupButt)
+        {
+            createUser(Email.getText().toString().trim(), Password.getText().toString().trim());
+        }
+    }
 }
+
