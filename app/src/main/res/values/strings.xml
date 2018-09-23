@@ -21,4 +21,6 @@
     <string name="AddRating">Give Rating</string>
     <string name="AddReview">Give Review</string>
     <string name="SendRatingReview">Send Review and Rating</string>
+    <string name="DailyMenu">Daily Menu</string>
+    <string name="Menu">Price Menu</string>
 </resources>

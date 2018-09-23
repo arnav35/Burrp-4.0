@@ -23,7 +23,6 @@
         <activity android:name=".OwnerSignup" />
         <activity android:name=".Menu" />
         <activity android:name=".OwnerMenu" />
-        <activity android:name=".messDetails" />
         <activity android:name=".StudentMenu" />
         <activity android:name=".Add_Menu" />
         <activity android:name=".addMenu"></activity>

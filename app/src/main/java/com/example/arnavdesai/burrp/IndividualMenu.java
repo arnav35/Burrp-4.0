@@ -9,8 +9,12 @@ import java.util.List;
 public class IndividualMenu {
     public List<String> ItemName,ItemPrice;
 
-    public IndividualMenu(List<String> itemName, List<String> itemPrice) {
-        ItemName = itemName;
-        ItemPrice = itemPrice;
+    public IndividualMenu() {
     }
+
+    public IndividualMenu(List<String> ItemName, List<String> ItemPrice) {
+        this.ItemName = ItemName;
+        this.ItemPrice = ItemPrice;
+    }
+
 }

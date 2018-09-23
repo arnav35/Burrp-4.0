@@ -1,30 +1,50 @@
 package com.example.arnavdesai.burrp;
 
 import android.content.Intent;
+import android.support.v4.view.MenuCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.StringBuilderPrinter;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class StudentMenu extends AppCompatActivity{
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-    private TextView messName,messAddress,messEmail,messPhone,ratingDisplay;
+import static android.R.attr.rating;
+
+public class StudentMenu extends AppCompatActivity implements View.OnClickListener{
+
+    private TextView messName,messAddress,messEmail,messPhone,ratingDisplay,dailyMenu1,dailyMenu2,dailyMenu3;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
     private String userID,name;
     private RatingBar ratingBar;
+    private float ratingValue;
+    private Button sendRatingReview;
+    private int countofStudent;
+    private TextView[] itemNameText,itemPriceText;
+    private View linearLayout;
+    private EditText reviewEdit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +56,13 @@ public class StudentMenu extends AppCompatActivity{
         messPhone=(TextView) findViewById(R.id.PhoneNumberText);
         ratingDisplay=(TextView) findViewById(R.id.RatingDisplay);
         ratingBar=(RatingBar) findViewById(R.id.ratingBar2);
+        sendRatingReview=(Button) findViewById(R.id.sendReviewRating);
+        dailyMenu1=(TextView) findViewById(R.id.DailyMenu1);
+        dailyMenu2=(TextView) findViewById(R.id.DailyMenu2);
+        dailyMenu3=(TextView) findViewById(R.id.DailyMenu3);
+        linearLayout=(View) findViewById(R.id.activity_student_menu);
+        reviewEdit=(EditText) findViewById(R.id.ReviewEdit);
+        sendRatingReview.setOnClickListener(this);
 
         name=getIntent().getStringExtra("messName");
 
@@ -43,6 +70,7 @@ public class StudentMenu extends AppCompatActivity{
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 ratingDisplay.setText(String.valueOf(rating));
+                ratingValue=rating;
             }
         });
         ratingDisplay.setText(String.valueOf(ratingBar.getRating()));
@@ -62,6 +90,69 @@ public class StudentMenu extends AppCompatActivity{
 
             }
         });
+
+        databaseReference=firebaseDatabase.getInstance().getReference("Daily Menu");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                showDaily(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReference=firebaseDatabase.getInstance().getReference("Menu");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                showMenu(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void showMenu(DataSnapshot dataSnapshot) {
+        IndividualMenu obj=dataSnapshot.child(userID).getValue(IndividualMenu.class);
+
+        List<String> Name=new ArrayList<String>();
+        Name=obj.ItemName;
+        List<String> Price=new ArrayList<String>();
+        Price=obj.ItemPrice;
+
+        int length=Name.size();
+        itemNameText=new TextView[length];
+        itemPriceText=new TextView[length];
+
+        for(int i=0; i<length; i++)
+        {
+            itemNameText[i]=new TextView(this);
+            itemPriceText[i]=new TextView(this);
+
+            itemPriceText[i].setText(Price.get(i));
+            itemNameText[i].setText(Name.get(i));
+
+            itemNameText[i].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            itemPriceText[i].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+
+            ((LinearLayout) linearLayout).addView(itemNameText[i]);
+            ((LinearLayout) linearLayout).addView(itemPriceText[i]);
+        }
+
+    }
+
+    private void showDaily(DataSnapshot dataSnapshot) throws NullPointerException {
+            MenuCard obj=dataSnapshot.child(userID).getValue(MenuCard.class);
+
+            dailyMenu1.setText(obj.getBhaji1());
+            dailyMenu2.setText(obj.getBhaji2());
+            dailyMenu3.setText(obj.getBhaji3());
     }
 
     private void showData(DataSnapshot dataSnapshot) throws NullPointerException{
@@ -80,5 +171,49 @@ public class StudentMenu extends AppCompatActivity{
         messAddress.setText(owner.getAddress());
         messEmail.setText(owner.getEmail());
         messPhone.setText(owner.getPhone());
+    }
+
+    public void addRating() throws NullPointerException
+    {
+        databaseReference=firebaseDatabase.getInstance().getReference("Rating");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                countofStudent=dataSnapshot.child("Rating").child(userID).getValue(RatingReview.class).getNoOfStudent();
+                countofStudent=countofStudent+1;
+
+                ratingValue=dataSnapshot.child("Rating").child(userID).getValue(RatingReview.class).getAvgRating();
+                ratingValue=(ratingBar.getRating()+ratingValue)/countofStudent;
+
+                Map<String,Object> mobj=new HashMap<String,Object>();
+                RatingReview obj=new RatingReview(ratingValue,countofStudent);
+                mobj.put(userID, obj);
+                databaseReference=firebaseDatabase.getInstance().getReference();
+                databaseReference.child("Rating").updateChildren(mobj);
+                finish();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        if(v == sendRatingReview)
+        {
+            addRating();
+            addReview();
+        }
+    }
+
+    private void addReview() {
+        databaseReference=firebaseDatabase.getInstance().getReference();
+        databaseReference.child("Review").child(userID).setValue(reviewEdit.getText().toString());
+        finish();
     }
 }

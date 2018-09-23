@@ -18,6 +18,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static android.os.Build.VERSION_CODES.O;
 
 public class OwnerSignup extends AppCompatActivity implements View.OnClickListener{
@@ -111,6 +114,9 @@ public void ownerSignup(final String email, final String password)
         String uid = firebaseUser.getUid();
         databaseReference.child("AllUsers").child(uid).setValue(owner);
         databaseReference.child("Owner").child(uid).setValue(owner);
+
+        RatingReview obj=new RatingReview(0,0);
+        databaseReference.child("Rating").child(uid).setValue(obj);
 
         Intent intent=new Intent(OwnerSignup.this, OwnerMenu.class);
         intent.putExtra("uid",uid);

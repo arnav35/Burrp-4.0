@@ -30,7 +30,7 @@ public class addMenu extends AppCompatActivity implements View.OnClickListener{
 
     private EditText numberofItem;
     int count=0;
-    private EditText[] ItemName,ItemPrice;
+    private EditText[] ItemNameEdit,ItemPriceEdit;
     private Button add,enter;
     private View linearLayout;
     private FirebaseAuth firebaseAuth;
@@ -58,22 +58,22 @@ public class addMenu extends AppCompatActivity implements View.OnClickListener{
         count=Integer.valueOf(numberofItem.getText().toString());
         Log.d("Burrp",String.valueOf(count));
 
-        ItemName=new EditText[count];
-        ItemPrice=new EditText[count];
+        ItemNameEdit=new EditText[count];
+        ItemPriceEdit=new EditText[count];
 
         for(int i=0;i<count;i++)
         {
-            ItemName[i]=new EditText(this);
-            ItemPrice[i]=new EditText(this);
+            ItemNameEdit[i]=new EditText(this);
+            ItemPriceEdit[i]=new EditText(this);
 
             //ItemName[i].setId(i);
             //ItemPrice[i].setId(i);
 
-            ItemName[i].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            ItemPrice[i].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            ItemNameEdit[i].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            ItemPriceEdit[i].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
-            ((LinearLayout) linearLayout).addView(ItemName[i]);
-            ((LinearLayout) linearLayout).addView(ItemPrice[i]);
+            ((LinearLayout) linearLayout).addView(ItemNameEdit[i]);
+            ((LinearLayout) linearLayout).addView(ItemPriceEdit[i]);
         }
     }
 
@@ -85,8 +85,8 @@ public class addMenu extends AppCompatActivity implements View.OnClickListener{
 
         for(int i=0;i<count;i++)
         {
-            name.add(i,ItemName[i].getText().toString());
-            price.add(i,ItemPrice[i].getText().toString());
+            name.add(i,ItemNameEdit[i].getText().toString());
+            price.add(i,ItemPriceEdit[i].getText().toString());
         }
 
         IndividualMenu menu=new IndividualMenu(name,price);

@@ -25,13 +25,13 @@
         android:inputType="textPersonName" />
 
     <Button
-        android:text="@string/Add"
+        android:text="@string/Enter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addButton" />
 
     <Button
-        android:text="@string/Enter"
+        android:text="@string/Add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/itemEnter" />
