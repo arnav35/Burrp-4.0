@@ -106,6 +106,7 @@ public void ownerSignup(final String email, final String password)
     });
 }
 
+
     public void owneradd() throws NullPointerException
     {
         Owner owner=new Owner(name.getText().toString().trim(), messName.getText().toString().trim(), address.getText().toString().trim(), email.getText().toString().trim(), phone.getText().toString().trim(), password.getText().toString().trim());

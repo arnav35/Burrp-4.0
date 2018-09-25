@@ -16,6 +16,7 @@ public class RatingReview {
         this.noOfStudent = noOfStudent;
     }
 
+
     public float getAvgRating() {
         return avgRating;
     }

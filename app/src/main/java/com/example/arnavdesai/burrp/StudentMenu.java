@@ -160,6 +160,7 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
             }
             dailyMenu[count]=new TextView(this);
             dailyMenu[count].setText("Price Menu");
+
             dailyMenu[count].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             ((LinearLayout) linearLayout).addView(dailyMenu[count]);
     }

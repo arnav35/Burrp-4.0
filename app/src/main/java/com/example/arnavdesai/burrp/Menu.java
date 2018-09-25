@@ -44,6 +44,7 @@ public class Menu extends AppCompatActivity {
         });
     }
 
+
     private void showData(DataSnapshot dataSnapshot) throws NullPointerException {
 
         count=(int) dataSnapshot.getChildrenCount();

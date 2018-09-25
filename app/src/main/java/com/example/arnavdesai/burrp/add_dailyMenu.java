@@ -70,6 +70,7 @@ public class add_dailyMenu extends AppCompatActivity implements View.OnClickList
         }
     }
 
+
     private void getData() {
 
         noOfItem=(EditText) findViewById(R.id.noOfItem);

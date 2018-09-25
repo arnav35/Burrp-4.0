@@ -38,6 +38,7 @@ public class CustomListAdapter extends ArrayAdapter{
         this.ratingArray=ratingArray;
     }
 
+
     public View getView(final int position, View view, ViewGroup parent)
     {
         LayoutInflater inflater=context.getLayoutInflater();

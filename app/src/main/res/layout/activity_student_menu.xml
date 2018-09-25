@@ -15,7 +15,8 @@
         android:text="@string/Mess"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/MessName" />
+        android:id="@+id/MessName"
+        android:textSize="18sp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -27,7 +28,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/MessAddress"
-        android:text="@string/Address" />
+        android:text="@string/Address"
+        android:textSize="18sp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -39,7 +41,8 @@
         android:text="@string/PhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/PhoneNumber" />
+        android:id="@+id/PhoneNumber"
+        android:textSize="18sp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -51,7 +54,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/Email"
-        android:text="@string/Email" />
+        android:text="@string/Email"
+        android:textSize="18sp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -63,7 +67,8 @@
         android:text="@string/AddRating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/RatingText" />
+        android:id="@+id/RatingText"
+        android:textSize="18sp" />
 
     <RatingBar
         android:layout_width="wrap_content"
@@ -81,7 +86,8 @@
         android:text="@string/AddReview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ReviewText" />
+        android:id="@+id/ReviewText"
+        android:textSize="18sp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -100,6 +106,7 @@
         android:text="@string/DailyMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/DailyMenuText" />
+        android:id="@+id/DailyMenuText"
+        android:textSize="18sp" />
 
 </LinearLayout>

@@ -77,6 +77,7 @@ public class addMenu extends AppCompatActivity implements View.OnClickListener{
     private void addtoDatabase() throws NullPointerException
     {
         List<String> name=new ArrayList<String>();
+
         List<String> price=new ArrayList<String>();
 
 

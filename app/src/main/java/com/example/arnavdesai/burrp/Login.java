@@ -43,6 +43,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         LoginButtStudent.setOnClickListener(this);
 
     }
+
     public void LoginUserOwner(String name, String password) {
         if(TextUtils.isEmpty(name) || TextUtils.isEmpty(password))
             Toast.makeText(Login.this,"email or password cannot be empty.",Toast.LENGTH_LONG).show();

@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         LoginButt.setOnClickListener(this);
         SignupButt.setOnClickListener(this);
     }
+
     @Override
     public void onClick(View view)
     {

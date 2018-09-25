@@ -14,6 +14,7 @@ public class Student {
 
     }
 
+
     public Student(String name, String college, String phone, String email, String password) {
         this.name = name;
         this.college = college;
