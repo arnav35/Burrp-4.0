@@ -165,6 +165,7 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
             ((LinearLayout) linearLayout).addView(dailyMenu[count]);
     }
 
+
     private void showData(DataSnapshot dataSnapshot) throws NullPointerException{
 
         for(DataSnapshot ds: dataSnapshot.getChildren())

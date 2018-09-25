@@ -58,6 +58,7 @@ public class OwnerMenu extends AppCompatActivity implements View.OnClickListener
         });
     }
 
+
     private void showData(DataSnapshot dataSnapshot) throws NullPointerException{
 
             Owner owner= dataSnapshot.child(userID).getValue(Owner.class);

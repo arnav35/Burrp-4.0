@@ -20,5 +20,4 @@ public class MenuCard {
     public void setBhaji(List<String> bhaji) {
         this.bhaji = bhaji;
     }
-
 }

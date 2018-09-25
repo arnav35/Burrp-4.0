@@ -10,7 +10,6 @@ public class Owner {
     public Owner() {
     }
 
-
     public Owner(String name, String messName, String address, String email, String phone, String password) {
         this.name = name;
         this.messName = messName;

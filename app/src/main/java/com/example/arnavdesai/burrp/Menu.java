@@ -60,6 +60,7 @@ public class Menu extends AppCompatActivity {
             i++;
         }
 
+
         CustomListAdapter customListAdapter=new CustomListAdapter(this, nameArray, addressArray, ratingArray);
         listview=(ListView) findViewById(R.id.listviewID);
         listview.setAdapter(customListAdapter);

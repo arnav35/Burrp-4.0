@@ -40,9 +40,9 @@
     <Button
         android:id="@+id/LoginButtonOwner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
-        android:text="Login As Owner" />
+        android:text="Login As Owner"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/LoginButtonStudent"

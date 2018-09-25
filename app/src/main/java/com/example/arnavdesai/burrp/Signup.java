@@ -96,7 +96,6 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
         });
     }
 
-
     public void addToDatabase() throws  NullPointerException
     {
         Student student=new Student(Name.getText().toString().trim(), College.getText().toString().trim(), Phone.getText().toString().trim(), Email.getText().toString().trim(), Password.getText().toString().trim());

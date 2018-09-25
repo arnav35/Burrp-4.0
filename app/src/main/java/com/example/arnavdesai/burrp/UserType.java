@@ -21,7 +21,6 @@ public class UserType extends AppCompatActivity implements View.OnClickListener{
         ownerBut.setOnClickListener(this);
     }
 
-
     @Override
     public void onClick(View view)
     {

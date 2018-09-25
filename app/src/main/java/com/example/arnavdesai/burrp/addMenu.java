@@ -41,7 +41,6 @@ public class addMenu extends AppCompatActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_menu);
-
         uid=getIntent().getStringExtra("uid");
 
         linearLayout=findViewById(R.id.activity_add_menu);
