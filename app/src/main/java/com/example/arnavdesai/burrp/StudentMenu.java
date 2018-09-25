@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,11 +26,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static android.R.attr.rating;
-
 public class StudentMenu extends AppCompatActivity implements View.OnClickListener{
 
-    private TextView messName,messAddress,messEmail,messPhone,ratingDisplay,dailyMenu1,dailyMenu2,dailyMenu3;
+    private TextView messName,messAddress,messEmail,messPhone,ratingDisplay;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
@@ -41,7 +38,7 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
     private float ratingValue;
     private Button sendRatingReview;
     private int countofStudent;
-    private TextView[] itemNameText,itemPriceText;
+    private TextView[] itemNameText,itemPriceText,dailyMenu;
     private View linearLayout;
     private EditText reviewEdit;
 
@@ -57,9 +54,6 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
         ratingDisplay=(TextView) findViewById(R.id.RatingDisplay);
         ratingBar=(RatingBar) findViewById(R.id.ratingBar2);
         sendRatingReview=(Button) findViewById(R.id.sendReviewRating);
-        dailyMenu1=(TextView) findViewById(R.id.DailyMenu1);
-        dailyMenu2=(TextView) findViewById(R.id.DailyMenu2);
-        dailyMenu3=(TextView) findViewById(R.id.DailyMenu3);
         linearLayout=(View) findViewById(R.id.activity_student_menu);
         reviewEdit=(EditText) findViewById(R.id.ReviewEdit);
         sendRatingReview.setOnClickListener(this);
@@ -150,9 +144,24 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
     private void showDaily(DataSnapshot dataSnapshot) throws NullPointerException {
             MenuCard obj=dataSnapshot.child(userID).getValue(MenuCard.class);
 
-            dailyMenu1.setText(obj.getBhaji1());
-            dailyMenu2.setText(obj.getBhaji2());
-            dailyMenu3.setText(obj.getBhaji3());
+            int count;
+            List<String> bhajiString=obj.getBhaji();
+            count=bhajiString.size();
+
+            dailyMenu=new TextView[count+1];
+
+            for(int i=0; i<count; i++)
+            {
+                dailyMenu[i]=new TextView(this);
+
+                dailyMenu[i].setText(bhajiString.get(i));
+                dailyMenu[i].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                ((LinearLayout) linearLayout).addView(dailyMenu[i]);
+            }
+            dailyMenu[count]=new TextView(this);
+            dailyMenu[count].setText("Price Menu");
+            dailyMenu[count].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            ((LinearLayout) linearLayout).addView(dailyMenu[count]);
     }
 
     private void showData(DataSnapshot dataSnapshot) throws NullPointerException{
@@ -176,6 +185,7 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
     public void addRating() throws NullPointerException
     {
         databaseReference=firebaseDatabase.getInstance().getReference("Rating");
+
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

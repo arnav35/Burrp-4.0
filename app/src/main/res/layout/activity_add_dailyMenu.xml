@@ -6,42 +6,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Add_Menu">
+    tools:context="com.example.arnavdesai.burrp.add_dailyMenu">
 
 
     <TextView
         android:id="@+id/tvbhaji"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter Todays Menu"
+        android:text="Enter Today's Menu"
         android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/etbhaji1"
+    <TextView
+        android:text="@string/dailyMenuTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="bhaji1"
-        android:inputType="text" />
+        android:id="@+id/textView3" />
 
     <EditText
-        android:id="@+id/etbhaji2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="textPersonName"
         android:ems="10"
-        android:hint="bhaji2"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/etbhaji3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="bhaji3" />
+        android:id="@+id/noOfItem" />
 
     <Button
         android:id="@+id/btsave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="save" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addBhaji"
+        android:text="@string/bhajiadd" />
 </LinearLayout>

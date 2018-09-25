@@ -102,25 +102,4 @@
         android:layout_height="wrap_content"
         android:id="@+id/DailyMenuText" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/DailyMenu1" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/DailyMenu2" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/DailyMenu3" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/MenuItem"
-        android:text="@string/Menu" />
-
 </LinearLayout>

@@ -66,9 +66,6 @@ public class addMenu extends AppCompatActivity implements View.OnClickListener{
             ItemNameEdit[i]=new EditText(this);
             ItemPriceEdit[i]=new EditText(this);
 
-            //ItemName[i].setId(i);
-            //ItemPrice[i].setId(i);
-
             ItemNameEdit[i].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             ItemPriceEdit[i].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 

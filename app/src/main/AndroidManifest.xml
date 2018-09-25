@@ -24,7 +24,7 @@
         <activity android:name=".Menu" />
         <activity android:name=".OwnerMenu" />
         <activity android:name=".StudentMenu" />
-        <activity android:name=".Add_Menu" />
+        <activity android:name=".add_dailyMenu" />
         <activity android:name=".addMenu"></activity>
     </application>
 
