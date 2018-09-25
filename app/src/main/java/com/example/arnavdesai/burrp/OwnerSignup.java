@@ -113,6 +113,7 @@ public void ownerSignup(final String email, final String password)
 
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         String uid = firebaseUser.getUid();
+
         databaseReference.child("AllUsers").child(uid).setValue(owner);
         databaseReference.child("Owner").child(uid).setValue(owner);
 

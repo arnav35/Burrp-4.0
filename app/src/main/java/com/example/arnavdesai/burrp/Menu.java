@@ -52,6 +52,7 @@ public class Menu extends AppCompatActivity {
         addressArray=new String[count];
 
         int i=0;
+
         for (DataSnapshot ds : dataSnapshot.getChildren()) {
             Owner owner=ds.getValue(Owner.class);
             nameArray[i]=owner.getMessName();
