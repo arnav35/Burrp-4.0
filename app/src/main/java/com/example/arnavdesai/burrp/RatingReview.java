@@ -4,6 +4,7 @@ package com.example.arnavdesai.burrp;
  * Created by Arnav Desai on 9/22/2018.
  */
 
+
 public class RatingReview {
     public float avgRating;
     public int noOfStudent;

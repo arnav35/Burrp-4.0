@@ -28,6 +28,7 @@ import static android.R.interpolator.linear;
 
 public class addMenu extends AppCompatActivity implements View.OnClickListener{
 
+
     private EditText numberofItem;
     int count=0;
     private EditText[] ItemNameEdit,ItemPriceEdit;

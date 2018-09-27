@@ -163,6 +163,7 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
 
             dailyMenu[count].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             ((LinearLayout) linearLayout).addView(dailyMenu[count]);
+
     }
 
 

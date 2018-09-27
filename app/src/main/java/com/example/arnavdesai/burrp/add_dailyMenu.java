@@ -45,6 +45,7 @@ public class add_dailyMenu extends AppCompatActivity implements View.OnClickList
     }
 
 
+
     public void addToDatabase() throws  NullPointerException
     {
         bhajiString=new ArrayList<String>();

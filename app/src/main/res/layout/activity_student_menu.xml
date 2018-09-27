@@ -16,7 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/MessName"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:layout_width="match_parent"
@@ -29,7 +30,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/MessAddress"
         android:text="@string/Address"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:layout_width="match_parent"
@@ -42,7 +44,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/PhoneNumber"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:layout_width="match_parent"
@@ -55,7 +58,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/Email"
         android:text="@string/Email"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:layout_width="match_parent"
@@ -68,7 +72,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/RatingText"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="normal|bold" />
 
     <RatingBar
         android:layout_width="wrap_content"
@@ -87,7 +92,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ReviewText"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textStyle="normal|bold" />
 
     <EditText
         android:layout_width="match_parent"

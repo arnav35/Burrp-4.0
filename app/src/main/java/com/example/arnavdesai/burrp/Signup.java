@@ -42,6 +42,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
         SignupButt.setOnClickListener(this);
     }
 
+
     public void createUser(final String email, final String password)
     {
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

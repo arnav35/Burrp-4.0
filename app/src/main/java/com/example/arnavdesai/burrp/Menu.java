@@ -30,6 +30,7 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+
         databaseReference=FirebaseDatabase.getInstance().getReference("Rating");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
