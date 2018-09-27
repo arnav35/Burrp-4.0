@@ -14,16 +14,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static android.R.attr.y;
+
 public class Menu extends AppCompatActivity {
 
     String[] nameArray;
     String[] addressArray;
-    String[] ratingArray={"4.2"};
+    String[] ratingArray;
     ListView listview;
-    private FirebaseAuth firebaseAuth;
-    private FirebaseUser firebaseUser;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Owner");
+    private DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
     int count=0;
 
     @Override
@@ -31,6 +30,20 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        databaseReference=FirebaseDatabase.getInstance().getReference("Rating");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                showRating(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReference=FirebaseDatabase.getInstance().getReference("Owner");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -44,6 +57,20 @@ public class Menu extends AppCompatActivity {
         });
     }
 
+    private String[] showRating(DataSnapshot dataSnapshot) throws NullPointerException {
+
+        count=(int)dataSnapshot.getChildrenCount();
+        ratingArray=new String[count];
+
+        int i=0;
+        for(DataSnapshot ds: dataSnapshot.getChildren())
+        {
+            RatingReview ratingReview=ds.getValue(RatingReview.class);
+            ratingArray[i]=String.valueOf(ratingReview.getAvgRating());
+            i++;
+        }
+        return ratingArray;
+    }
 
     private void showData(DataSnapshot dataSnapshot) throws NullPointerException {
 
@@ -60,11 +87,11 @@ public class Menu extends AppCompatActivity {
             i++;
         }
 
-
         CustomListAdapter customListAdapter=new CustomListAdapter(this, nameArray, addressArray, ratingArray);
         listview=(ListView) findViewById(R.id.listviewID);
         listview.setAdapter(customListAdapter);
     }
+
     void getCount(DataSnapshot dataSnapshot) throws NullPointerException
     {
         count=(int)dataSnapshot.getChildrenCount();

@@ -22,4 +22,9 @@
         android:id="@+id/ratingBar"
         android:numStars="5"
         android:isIndicator="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingValue" />
 </LinearLayout>

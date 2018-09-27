@@ -192,10 +192,10 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                countofStudent=dataSnapshot.child("Rating").child(userID).getValue(RatingReview.class).getNoOfStudent();
+                countofStudent=dataSnapshot.child(userID).getValue(RatingReview.class).getNoOfStudent();
                 countofStudent=countofStudent+1;
 
-                ratingValue=dataSnapshot.child("Rating").child(userID).getValue(RatingReview.class).getAvgRating();
+                ratingValue=dataSnapshot.child(userID).getValue(RatingReview.class).getAvgRating();
                 ratingValue=(ratingBar.getRating()+ratingValue)/countofStudent;
 
                 Map<String,Object> mobj=new HashMap<String,Object>();

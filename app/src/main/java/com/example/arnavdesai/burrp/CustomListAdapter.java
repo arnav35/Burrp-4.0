@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import com.example.arnavdesai.burrp.R;
 
+import static android.R.attr.factor;
+import static android.R.attr.fillAfter;
+import static android.R.attr.rating;
 import static android.R.attr.start;
 import static com.example.arnavdesai.burrp.R.id.addressTextfield;
 
@@ -45,10 +48,14 @@ public class CustomListAdapter extends ArrayAdapter{
         View rowView =inflater.inflate(R.layout.listview_row, null, true);
 
         ratingBar=(RatingBar) rowView.findViewById(R.id.ratingBar);
-        ratingBar.setRating(Float.parseFloat(ratingArray[0]));
-
         Button nameButton =(Button) rowView.findViewById(R.id.button2);
         TextView addressTextfield =(TextView) rowView.findViewById(R.id.addressTextfield);
+        TextView ratingValue=(TextView) rowView.findViewById(R.id.ratingValue);
+
+        nameButton.setText(nameArray[position]);
+        addressTextfield.setText(addressArray[position]);
+        ratingBar.setRating(Float.parseFloat(ratingArray[position]));
+        ratingValue.setText(ratingArray[position]);
 
         nameButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,9 +65,6 @@ public class CustomListAdapter extends ArrayAdapter{
                 context.startActivity(intent);
             }
         });
-
-        nameButton.setText(nameArray[position]);
-        addressTextfield.setText(addressArray[position]);
 
         return rowView;
     }
