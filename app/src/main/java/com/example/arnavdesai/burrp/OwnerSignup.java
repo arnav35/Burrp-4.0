@@ -110,12 +110,14 @@ public void ownerSignup(final String email, final String password)
     public void owneradd() throws NullPointerException
     {
         Owner owner=new Owner(name.getText().toString().trim(), messName.getText().toString().trim(), address.getText().toString().trim(), email.getText().toString().trim(), phone.getText().toString().trim(), password.getText().toString().trim());
+        Visited V = new Visited();   //empty visited class.
 
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         String uid = firebaseUser.getUid();
 
         databaseReference.child("AllUsers").child(uid).setValue(owner);
         databaseReference.child("Owner").child(uid).setValue(owner);
+        databaseReference.child("Count").child(messName.getText().toString().trim()).setValue(V); //setting empty visited class.
 
         RatingReview obj=new RatingReview(0,0);
         databaseReference.child("Rating").child(uid).setValue(obj);

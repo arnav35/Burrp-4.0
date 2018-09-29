@@ -21,9 +21,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class StudentMenu extends AppCompatActivity implements View.OnClickListener{
@@ -41,6 +43,7 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
     private TextView[] itemNameText,itemPriceText,dailyMenu;
     private View linearLayout;
     private EditText reviewEdit;
+    private Button btnComing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +60,9 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
         linearLayout=(View) findViewById(R.id.activity_student_menu);
         reviewEdit=(EditText) findViewById(R.id.ReviewEdit);
         sendRatingReview.setOnClickListener(this);
+        btnComing = (Button) findViewById(R.id.comingButton);
 
+        btnComing.setOnClickListener(this);
         name=getIntent().getStringExtra("messName");
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -202,6 +207,7 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
                 Map<String,Object> mobj=new HashMap<String,Object>();
                 RatingReview obj=new RatingReview(ratingValue,countofStudent);
                 mobj.put(userID, obj);
+
                 databaseReference=firebaseDatabase.getInstance().getReference();
                 databaseReference.child("Rating").updateChildren(mobj);
                 finish();
@@ -222,6 +228,34 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
             addRating();
             addReview();
         }
+        if (v== btnComing)
+        {
+            i_am_coming();
+        }
+    }
+    private void i_am_coming() {
+        databaseReference = FirebaseDatabase.getInstance().getReference("Count");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Visited V = new Visited();
+                V=dataSnapshot.child(name).getValue(com.example.arnavdesai.burrp.Visited.class);
+                String weekday_name = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(System.currentTimeMillis());
+                if(weekday_name.equals("Monday")) V.update(1);
+                if(weekday_name.equals("Tuesday")) V.update(2);
+                if(weekday_name.equals("Wednesday")) V.update(3);
+                if(weekday_name.equals("Thurs")) V.update(4);
+                if(weekday_name.equals("Friday")) V.update(5);
+                if(weekday_name.equals("Saturday")) V.update(6);
+                if(weekday_name.equals("Sunday")) V.update(7);
+                databaseReference.child(name).setValue(V);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void addReview() {

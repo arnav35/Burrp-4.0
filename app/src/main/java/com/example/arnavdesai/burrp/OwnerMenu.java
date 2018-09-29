@@ -15,6 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
+
 public class OwnerMenu extends AppCompatActivity implements View.OnClickListener{
 
     private TextView messName,messAddress,messEmail,messPhone;
@@ -23,7 +25,7 @@ public class OwnerMenu extends AppCompatActivity implements View.OnClickListener
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
     private String userID;
-    private Button addmenu,addDailyMenu;
+    private Button addmenu,addDailyMenu,addLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +38,11 @@ public class OwnerMenu extends AppCompatActivity implements View.OnClickListener
         messPhone=(TextView) findViewById(R.id.PhoneNumberText);
         addmenu=(Button) findViewById(R.id.addMenuItem);
         addDailyMenu=(Button) findViewById(R.id.addDailyMenu);
+        addLocation=(Button) findViewById(R.id.add_location);
 
         addDailyMenu.setOnClickListener(this);
         addmenu.setOnClickListener(this);
+        addLocation.setOnClickListener(this);
 
         userID=getIntent().getStringExtra("uid");
 
@@ -68,6 +72,16 @@ public class OwnerMenu extends AppCompatActivity implements View.OnClickListener
             messAddress.setText(owner.getAddress());
             messEmail.setText(owner.getEmail());
             messPhone.setText(owner.getPhone());
+
+        Calendar calendar = Calendar.getInstance();    //getting current date. if it is 2, we reset the visit stats
+        int thisDay = calendar.get(Calendar.DAY_OF_MONTH);
+        if(thisDay==2)
+        {
+            Visited V = new Visited();
+            DatabaseReference databaseReference1=FirebaseDatabase.getInstance().getReference("Count");
+            databaseReference1.child(owner.getMessName()).setValue(V);
+        }
+
     }
 
 
@@ -83,6 +97,13 @@ public class OwnerMenu extends AppCompatActivity implements View.OnClickListener
         if(v == addDailyMenu)
         {
             Intent intent=new Intent(OwnerMenu.this, add_dailyMenu.class);
+            intent.putExtra("uid",userID);
+            startActivity(intent);
+        }
+        if(v == addLocation)
+        {
+            Intent intent=new Intent(OwnerMenu.this, Marker.class);
+            intent.putExtra("messName",messName.getText().toString().trim());
             intent.putExtra("uid",userID);
             startActivity(intent);
         }

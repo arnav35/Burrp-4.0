@@ -44,8 +44,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
     }
 
-
-
     public void LoginUserOwner(String name, String password) {
         if(TextUtils.isEmpty(name) || TextUtils.isEmpty(password))
             Toast.makeText(Login.this,"email or password cannot be empty.",Toast.LENGTH_LONG).show();
@@ -139,9 +137,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
                             }
                         });
-
-
-
                     }
                     if (!task.isSuccessful()) {
                         Toast.makeText(Login.this, "Login unsuccessful. Please register yourself. ", Toast.LENGTH_SHORT).show();

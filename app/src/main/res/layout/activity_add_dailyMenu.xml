@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter Today's Menu"
-        android:textSize="30sp" />
+        android:textSize="28sp" />
 
     <TextView
         android:text="@string/dailyMenuTitle"

@@ -26,4 +26,5 @@
     <string name="VisittheMess">I am gonna visit the mess</string>
     <string name="bhajiadd">Add Bhaji</string>
     <string name="dailyMenuTitle">Number of item to add to daily menu</string>
+    <string name="title_activity_marker">Map</string>
 </resources>

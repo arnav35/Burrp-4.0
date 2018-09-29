@@ -108,6 +108,12 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent" />
 
+    <Button
+        android:text="Eat at Mess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/comingButton" />
+
     <TextView
         android:text="@string/DailyMenu"
         android:layout_width="match_parent"
