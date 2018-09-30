@@ -10,9 +10,14 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp">
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/usericon1" />
 
         <TextView
             android:id="@+id/etName"
@@ -27,11 +32,9 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -124,7 +127,6 @@
                 android:layout_marginLeft="130dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="15dp"
-                android:background="#00FF00"
                 android:text="Todays Menu"
                 android:textSize="20dp" />
 
@@ -160,7 +162,7 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="10dp">
 
@@ -170,20 +172,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="100dp"
-                android:background="#FF0000"
                 android:text="Update Menu"
-                android:textSize="10dp"
-                android:textStyle="bold" />
-
-
-            <Button
-                android:id="@+id/MessList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="100dp"
-                android:background="#FF0000"
-                android:text="Show Mess List"
                 android:textSize="10dp"
                 android:textStyle="bold" />
 
@@ -193,7 +182,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="100dp"
-                android:background="#FF0000"
                 android:text="Menu Card"
                 android:textSize="10dp"
                 android:textStyle="bold" />
@@ -204,11 +192,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="100dp"
-                android:background="#FF0000"
                 android:text="Log Out"
                 android:textSize="10dp"
                 android:textStyle="bold" />
-
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="100dp"
+                android:text="Show Daily Graph"
+                android:id="@+id/showGraph"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

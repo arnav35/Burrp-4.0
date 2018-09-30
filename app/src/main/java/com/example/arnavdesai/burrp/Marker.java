@@ -93,6 +93,7 @@ public class Marker extends FragmentActivity implements OnMapReadyCallback {
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
+
     void listener() {
         locationListener locationListener = new locationListener();
 
@@ -100,10 +101,8 @@ public class Marker extends FragmentActivity implements OnMapReadyCallback {
 
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3, 10, locationListener);
 
-
         markerthread mthread=new markerthread();
         mthread.start();
-
     }
 
     class markerthread extends Thread {

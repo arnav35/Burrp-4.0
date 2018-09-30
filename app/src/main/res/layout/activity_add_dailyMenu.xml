@@ -30,14 +30,14 @@
         android:id="@+id/noOfItem" />
 
     <Button
-        android:id="@+id/btsave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="save" />
-
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addBhaji"
         android:text="@string/bhajiadd" />
+
+    <Button
+        android:id="@+id/btsave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save" />
 </LinearLayout>

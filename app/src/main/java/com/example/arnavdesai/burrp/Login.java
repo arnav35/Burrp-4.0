@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +28,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     private Button LoginButtOwner;
     private Button LoginButtStudent;
     private FirebaseAuth firebaseAuth;
+    private TextView forgetPassword;
     private DatabaseReference databaseReferenceOwner = FirebaseDatabase.getInstance().getReference("Owner");
     private DatabaseReference databaseReferenceStudent = FirebaseDatabase.getInstance().getReference("Student");
 
@@ -38,10 +40,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         LoginButtStudent = (Button) findViewById(R.id.LoginButtonStudent);
         nameEdit=(EditText) findViewById(R.id.LoginNameEdit);
         passEdit=(EditText) findViewById(R.id.LoginPasswordEdit);
+        forgetPassword=(TextView)findViewById(R.id.forgetPassword);
         firebaseAuth=FirebaseAuth.getInstance();
         LoginButtOwner.setOnClickListener(this);
         LoginButtStudent.setOnClickListener(this);
-
+        forgetPassword.setOnClickListener(this);
     }
 
     public void LoginUserOwner(String name, String password) {
@@ -65,7 +68,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                 if (dataSnapshot.hasChild(uid))
                                 {
                                     Toast.makeText(Login.this, "Login successful ", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(Login.this, OwnerMenu.class);
+                                    Intent intent = new Intent(Login.this, OwnerProfile.class);
                                     intent.putExtra("uid",uid);
                                     finish();
                                     startActivity(intent);
@@ -99,6 +102,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         if(view == LoginButtStudent)
         {
             LoginUserStudent(nameEdit.getText().toString().trim(), passEdit.getText().toString().trim());
+        }
+        if(view==forgetPassword){
+            Intent intent=new Intent(Login.this,forgetPassword.class);
+            startActivity(intent);
         }
     }
 

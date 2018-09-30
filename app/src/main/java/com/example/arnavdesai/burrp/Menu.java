@@ -35,7 +35,7 @@ public class Menu extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                showRating(dataSnapshot);
+                ratingArray=showRating(dataSnapshot);
             }
 
             @Override

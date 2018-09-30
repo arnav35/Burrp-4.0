@@ -77,4 +77,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/add_location" />
 
+    <Button
+        android:text="Display Daily User"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/showGraph" />
+
 </LinearLayout>

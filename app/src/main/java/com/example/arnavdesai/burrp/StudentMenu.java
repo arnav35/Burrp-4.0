@@ -239,7 +239,7 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Visited V = new Visited();
-                V=dataSnapshot.child(name).getValue(com.example.arnavdesai.burrp.Visited.class);
+                V=dataSnapshot.child(name).getValue(Visited.class);
                 String weekday_name = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(System.currentTimeMillis());
                 if(weekday_name.equals("Monday")) V.update(1);
                 if(weekday_name.equals("Tuesday")) V.update(2);

@@ -25,15 +25,15 @@
         android:inputType="textPersonName" />
 
     <Button
-        android:text="@string/Enter"
-        android:layout_width="match_parent"
-        android:id="@+id/addButton"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:text="@string/Add"
+        android:text="Add Menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/itemEnter" />
+
+    <Button
+        android:text="Save"
+        android:layout_width="match_parent"
+        android:id="@+id/addButton"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

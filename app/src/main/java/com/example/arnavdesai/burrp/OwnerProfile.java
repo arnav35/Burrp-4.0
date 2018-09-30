@@ -20,16 +20,18 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
+import static com.example.arnavdesai.burrp.R.id.showGraph;
+
 public class OwnerProfile extends AppCompatActivity implements View.OnClickListener {
 
     private TextView messName, messAddress, messPhone,ownerName;
-    private FirebaseDatabase firebaseDatabase,firebaseDatabase1;
+    private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
     private TextView bhaji1,bhaji2,bhaji3;
     private DatabaseReference databaseReference,databaseReference1;
     private FirebaseUser firebaseUser;
     private String userID,messname;
-    private Button update, logout,messList,menu;
+    private Button update, logout,messList,menu,showGraph;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,15 +46,16 @@ public class OwnerProfile extends AppCompatActivity implements View.OnClickListe
         menu=(Button) findViewById(R.id.menucard);
         update = (Button) findViewById(R.id.update_menu);
         logout = (Button) findViewById(R.id.log_out);
-        messList=(Button)findViewById(R.id.MessList);
+        //messList=(Button)findViewById(R.id.MessList);
         update.setOnClickListener(this);
         logout.setOnClickListener(this);
-        messList.setOnClickListener(this);
+        //messList.setOnClickListener(this);
         menu.setOnClickListener(this);
         bhaji1=(TextView)findViewById(R.id.bhaji1);
         bhaji2=(TextView)findViewById(R.id.bhaji2);
         bhaji3=(TextView)findViewById(R.id.bhaji3);
-
+        showGraph=(Button) findViewById(R.id.showGraph);
+        showGraph.setOnClickListener(this);
         userID=getIntent().getStringExtra("uid");
 
         firebaseAuth=FirebaseAuth.getInstance();
@@ -127,23 +130,31 @@ public class OwnerProfile extends AppCompatActivity implements View.OnClickListe
     }
     public void onClick(View v){
         if(update==v){
-            Intent intent=new Intent(OwnerProfile.this, add_dailyMenu.class);
+            Intent intent=new Intent(OwnerProfile.this, UpdateActivity_Owner.class);
             //  intent.putExtra("messName", messName.getText().toString().trim());
             intent.putExtra("uid",userID);
+            intent.putExtra("messName",messname);
             startActivity(intent);
         }
-        else if(messList==v){
+        if(messList==v){
             Intent intent=new Intent(OwnerProfile.this, Menu.class);
             startActivity(intent);
         }
-        else if(menu==v){
+        if(menu==v){
             Intent intent=new Intent(OwnerProfile.this, DisplayMenu.class);
             intent.putExtra("messname",messname);
             startActivity(intent);
 
         }
-        else if(logout==v){
+        if(logout==v){
             Intent intent=new Intent(OwnerProfile.this,MainActivity.class);
+            startActivity(intent);
+        }
+
+        if (v == showGraph)
+        {
+            Intent intent=new Intent(OwnerProfile.this, graphDaily.class);
+            intent.putExtra("messname",messName.getText().toString().trim());
             startActivity(intent);
         }
     }

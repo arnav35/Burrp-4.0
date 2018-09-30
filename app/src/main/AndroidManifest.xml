@@ -14,8 +14,7 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -33,7 +32,8 @@
             </intent-filter>
         </activity>
 
-        <!--<meta-data
+        <!--
+            <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyA_Lr0X74mzBgxB-ovbqGSkxKFS9u2JH38" />
         -->
@@ -41,7 +41,6 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
 
         <activity android:name=".Login" />
         <activity android:name=".Signup" />
@@ -69,7 +68,15 @@
 
         <activity
             android:name=".Marker"
-            android:label="@string/title_activity_marker"></activity>
+            android:label="@string/title_activity_marker" />
+        <activity android:name=".graphDaily"></activity>
+        <activity android:name=".UpdateMessName"></activity>
+        <activity android:name=".Update_Account"></activity>
+        <activity android:name=".UpdateActivity_Owner"></activity>
+        <activity android:name=".Update_Address"></activity>
+        <activity android:name=".Update_Contact"></activity>
+        <activity android:name=".Update_Password"></activity>
+        <activity android:name=".forgetPassword"></activity>
     </application>
 
 </manifest>
