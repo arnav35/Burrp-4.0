@@ -27,4 +27,5 @@
     <string name="bhajiadd">Add Bhaji</string>
     <string name="dailyMenuTitle">Number of item to add to daily menu</string>
     <string name="title_activity_marker">Map</string>
+    <string name="title_activity_mess_location">Map</string>
 </resources>

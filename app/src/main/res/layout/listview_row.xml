@@ -14,14 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addressTextfield"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_marginTop="10dp" />
 
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ratingBar"
         android:numStars="5"
-        android:isIndicator="true" />
+        android:isIndicator="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp" />
 
     <TextView
         android:layout_width="match_parent"

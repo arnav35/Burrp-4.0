@@ -2,6 +2,7 @@ package com.example.arnavdesai.burrp;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
@@ -25,7 +26,7 @@ public class Marker extends FragmentActivity implements OnMapReadyCallback {
     private DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
     private GoogleMap mMap;
     String messName,uid;
-    String lat,log;
+    Double lat,log;
     Button addLocation;
 
     @Override
@@ -36,7 +37,7 @@ public class Marker extends FragmentActivity implements OnMapReadyCallback {
 
         messName=getIntent().getStringExtra("messName");
         uid=getIntent().getStringExtra("uid");
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -44,19 +45,11 @@ public class Marker extends FragmentActivity implements OnMapReadyCallback {
     }
 
     private void addtoDatabase() {
-        databaseReference.child("Mess Location").child(uid).setValue(lat,log);
+        mLocation location=new mLocation(lat,log);
+
+        databaseReference.child("Mess Location").child(uid).setValue(location);
     }
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed GSoogle Play services and returned to the app.
-     */
     //access to permsions
     void CheckUserPermsions(){
         if ( Build.VERSION.SDK_INT >= 23){
@@ -101,6 +94,7 @@ public class Marker extends FragmentActivity implements OnMapReadyCallback {
 
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3, 10, locationListener);
 
+
         markerthread mthread=new markerthread();
         mthread.start();
     }
@@ -108,40 +102,40 @@ public class Marker extends FragmentActivity implements OnMapReadyCallback {
     class markerthread extends Thread {
         public void run()
         {
-            int i=0;
+            final int[] i = {0};
 
             while (true)
             {
-                final int finalI = i;
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
 
-                        if (locationListener.location != null && finalI ==0) {
+                        if (locationListener.location != null && i[0] ==0) {
                             LatLng currentPos = new LatLng(locationListener.location.getLatitude(), locationListener.location.getLongitude());
-                            //mMap.addMarker(new MarkerOptions().position(currentPos).draggable(true).title(messName));
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentPos,12));
                             Toast.makeText(Marker.this, "Click on the mess location to add",Toast.LENGTH_LONG).show();
                         }
+
                         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                             @Override
                             public void onMapClick(LatLng latLng) {
                                 mMap.addMarker(new MarkerOptions().position(latLng).draggable(true).title(messName));
                                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,12));
-                                lat=String.valueOf(latLng.latitude);
-                                log=String.valueOf(latLng.longitude);
-                            }
+                                lat=latLng.latitude;
+                                log=latLng.longitude;
+                                }
                         });
+                        i[0]++;
                         addLocation.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 addtoDatabase();
+                                finish();
                             }
                         });
-
                     }
                 });
-                i++;
+
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -150,10 +144,9 @@ public class Marker extends FragmentActivity implements OnMapReadyCallback {
             }
         }
     }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
     }
 }

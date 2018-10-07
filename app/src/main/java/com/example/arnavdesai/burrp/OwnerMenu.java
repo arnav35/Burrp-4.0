@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Calendar;
 
 import static com.example.arnavdesai.burrp.R.id.messname;
+import static com.example.arnavdesai.burrp.R.id.showGraph;
 
 public class OwnerMenu extends AppCompatActivity implements View.OnClickListener{
 
@@ -27,7 +28,7 @@ public class OwnerMenu extends AppCompatActivity implements View.OnClickListener
     private DatabaseReference databaseReference;
     private FirebaseUser firebaseUser;
     private String userID;
-    private Button addmenu,addDailyMenu,addLocation,showGraph;
+    private Button addmenu,addDailyMenu,addLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +42,10 @@ public class OwnerMenu extends AppCompatActivity implements View.OnClickListener
         addmenu=(Button) findViewById(R.id.addMenuItem);
         addDailyMenu=(Button) findViewById(R.id.addDailyMenu);
         addLocation=(Button) findViewById(R.id.add_location);
-        showGraph=(Button) findViewById(R.id.showGraph);
 
         addDailyMenu.setOnClickListener(this);
         addmenu.setOnClickListener(this);
         addLocation.setOnClickListener(this);
-        showGraph.setOnClickListener(this);
 
         userID=getIntent().getStringExtra("uid");
         firebaseAuth=FirebaseAuth.getInstance();
@@ -108,12 +107,6 @@ public class OwnerMenu extends AppCompatActivity implements View.OnClickListener
             Intent intent=new Intent(OwnerMenu.this, Marker.class);
             intent.putExtra("messName",messName.getText().toString().trim());
             intent.putExtra("uid",userID);
-            startActivity(intent);
-        }
-        if (v == showGraph)
-        {
-            Intent intent=new Intent(OwnerMenu.this, graphDaily.class);
-            intent.putExtra("messname",messName.getText().toString().trim());
             startActivity(intent);
         }
     }

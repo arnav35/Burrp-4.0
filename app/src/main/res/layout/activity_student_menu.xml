@@ -11,114 +11,132 @@
     tools:context="com.example.arnavdesai.burrp.StudentMenu"
     android:orientation="vertical">
 
-    <TextView
-        android:text="@string/Mess"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/MessName"
-        android:textSize="18sp"
-        android:textStyle="normal|bold" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/MessNameText"
-        android:textSize="18sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/scroll">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/MessAddress"
-        android:text="@string/Address"
-        android:textSize="18sp"
-        android:textStyle="normal|bold" />
+            <TextView
+                android:text="@string/Mess"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/MessName"
+                android:textSize="18sp"
+                android:textStyle="normal|bold" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/MessAddressText"
-        android:textSize="18sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/MessNameText"
+                android:textSize="18sp" />
 
-    <TextView
-        android:text="@string/PhoneNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/PhoneNumber"
-        android:textSize="18sp"
-        android:textStyle="normal|bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/MessAddress"
+                android:text="@string/Address"
+                android:textSize="18sp"
+                android:textStyle="normal|bold" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/PhoneNumberText"
-        android:textSize="18sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/MessAddressText"
+                android:textSize="18sp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/Email"
-        android:text="@string/Email"
-        android:textSize="18sp"
-        android:textStyle="normal|bold" />
+            <TextView
+                android:text="@string/PhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/PhoneNumber"
+                android:textSize="18sp"
+                android:textStyle="normal|bold" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/EmailText"
-        android:textSize="18sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/PhoneNumberText"
+                android:textSize="18sp" />
 
-    <TextView
-        android:text="@string/AddRating"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/RatingText"
-        android:textSize="18sp"
-        android:textStyle="normal|bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Email"
+                android:text="@string/Email"
+                android:textSize="18sp"
+                android:textStyle="normal|bold" />
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ratingBar2"
-        android:numStars="@integer/stars"
-        android:stepSize="0.1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/EmailText"
+                android:textSize="18sp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/RatingDisplay" />
+            <TextView
+                android:text="@string/AddRating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/RatingText"
+                android:textSize="18sp"
+                android:textStyle="normal|bold" />
 
-    <TextView
-        android:text="@string/AddReview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ReviewText"
-        android:textSize="18sp"
-        android:textStyle="normal|bold" />
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBar2"
+                android:numStars="@integer/stars"
+                android:stepSize="0.1" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/ReviewEdit" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/RatingDisplay" />
 
-    <Button
-        android:text="@string/SendRatingReview"
-        android:id="@+id/sendReviewRating"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent" />
+            <TextView
+                android:text="@string/AddReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ReviewText"
+                android:textSize="18sp"
+                android:textStyle="normal|bold" />
 
-    <Button
-        android:text="Eat at Mess"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/comingButton" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:id="@+id/ReviewEdit" />
 
-    <TextView
-        android:text="@string/DailyMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/DailyMenuText"
-        android:textSize="18sp" />
+            <Button
+                android:text="@string/SendRatingReview"
+                android:id="@+id/sendReviewRating"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+
+            <Button
+                android:text="Show Location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/showLocation" />
+
+            <Button
+                android:text="Eat at Mess"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/comingButton" />
+
+            <TextView
+                android:text="@string/DailyMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/DailyMenuText"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

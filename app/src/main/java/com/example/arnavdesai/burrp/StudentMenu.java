@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -43,7 +44,7 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
     private TextView[] itemNameText,itemPriceText,dailyMenu;
     private View linearLayout;
     private EditText reviewEdit;
-    private Button btnComing;
+    private Button btnComing,showLoc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +58,13 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
         ratingDisplay=(TextView) findViewById(R.id.RatingDisplay);
         ratingBar=(RatingBar) findViewById(R.id.ratingBar2);
         sendRatingReview=(Button) findViewById(R.id.sendReviewRating);
-        linearLayout=(View) findViewById(R.id.activity_student_menu);
+        linearLayout=(View) findViewById(R.id.scroll);
         reviewEdit=(EditText) findViewById(R.id.ReviewEdit);
         sendRatingReview.setOnClickListener(this);
         btnComing = (Button) findViewById(R.id.comingButton);
+        showLoc=(Button) findViewById(R.id.showLocation);
 
+        showLoc.setOnClickListener(this);
         btnComing.setOnClickListener(this);
         name=getIntent().getStringExtra("messName");
 
@@ -232,13 +235,19 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
         {
             i_am_coming();
         }
+        if (v == showLoc)
+        {
+            Intent intent=new Intent(StudentMenu.this, MessLocation.class);
+            intent.putExtra("uid",userID);
+            startActivity(intent);
+        }
     }
     private void i_am_coming() {
         databaseReference = FirebaseDatabase.getInstance().getReference("Count");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Visited V = new Visited();
+                /*Visited V = new Visited();
                 V=dataSnapshot.child(name).getValue(Visited.class);
                 String weekday_name = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(System.currentTimeMillis());
                 if(weekday_name.equals("Monday")) V.update(1);
@@ -248,6 +257,16 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
                 if(weekday_name.equals("Friday")) V.update(5);
                 if(weekday_name.equals("Saturday")) V.update(6);
                 if(weekday_name.equals("Sunday")) V.update(7);
+                databaseReference.child(name).setValue(V);
+                */
+
+                Visited V = new Visited();
+                V=dataSnapshot.child(name).getValue(Visited.class);
+                String weekday_name = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(System.currentTimeMillis());
+                Calendar cal= Calendar.getInstance();
+                SimpleDateFormat month_date = new SimpleDateFormat("MMM"); //Short month name e.g. 'Jan'. Use "MMMM" for full name
+                String month_name = month_date.format(cal.getTime());  //getting month name.
+                V.update(weekday_name,month_name);       //increasing day and month count.
                 databaseReference.child(name).setValue(V);
             }
 

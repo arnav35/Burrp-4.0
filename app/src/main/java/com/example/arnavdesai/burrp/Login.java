@@ -130,7 +130,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                 if (dataSnapshot.hasChild(uid))
                                 {
                                     Toast.makeText(Login.this, "Login successful ", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(Login.this, Menu.class);
+                                    Intent intent = new Intent(Login.this, StudentOptions.class);
                                     finish();
                                     startActivity(intent);
                                 }

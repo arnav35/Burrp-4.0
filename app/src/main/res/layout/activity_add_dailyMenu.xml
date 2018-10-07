@@ -20,7 +20,8 @@
         android:text="@string/dailyMenuTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3" />
+        android:id="@+id/textView3"
+        android:layout_marginTop="20dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -33,11 +34,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addBhaji"
-        android:text="@string/bhajiadd" />
+        android:text="@string/bhajiadd"
+        android:layout_marginTop="20dp" />
 
     <Button
         android:id="@+id/btsave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save" />
+        android:text="Save"
+        android:layout_marginTop="10dp" />
 </LinearLayout>

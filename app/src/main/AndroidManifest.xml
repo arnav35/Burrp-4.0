@@ -53,7 +53,6 @@
         <activity android:name=".addMenu" />
         <activity android:name=".OwnerProfile" />
         <activity android:name=".DisplayMenu" />
-        <activity android:name=".addMarker" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -69,14 +68,20 @@
         <activity
             android:name=".Marker"
             android:label="@string/title_activity_marker" />
-        <activity android:name=".graphDaily"></activity>
-        <activity android:name=".UpdateMessName"></activity>
-        <activity android:name=".Update_Account"></activity>
-        <activity android:name=".UpdateActivity_Owner"></activity>
-        <activity android:name=".Update_Address"></activity>
-        <activity android:name=".Update_Contact"></activity>
-        <activity android:name=".Update_Password"></activity>
-        <activity android:name=".forgetPassword"></activity>
+        <activity android:name=".graphDaily" />
+        <activity android:name=".UpdateMessName" />
+        <activity android:name=".Update_Account" />
+        <activity android:name=".UpdateActivity_Owner" />
+        <activity android:name=".Update_Address" />
+        <activity android:name=".Update_Contact" />
+        <activity android:name=".Update_Password" />
+        <activity android:name=".forgetPassword" />
+        <activity
+            android:name=".MessLocation"
+            android:label="@string/title_activity_mess_location" />
+        <activity android:name=".graphMonthly" />
+        <activity android:name=".MessList" />
+        <activity android:name=".StudentOptions"></activity>
     </application>
 
 </manifest>
