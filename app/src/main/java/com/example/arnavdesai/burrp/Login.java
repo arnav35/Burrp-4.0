@@ -1,5 +1,6 @@
 package com.example.arnavdesai.burrp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -56,10 +57,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             Toast.makeText(Login.this,"Please enter valid email.",Toast.LENGTH_LONG).show();
         else
         {
+
+            final ProgressDialog progressDialog=ProgressDialog.show(Login.this,"Logging in...", "Please Wait",true);
+
             firebaseAuth.signInWithEmailAndPassword(name, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
+
+                        progressDialog.dismiss();
                         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                         final String uid = firebaseUser.getUid();
                         databaseReferenceOwner.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -118,6 +124,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             Toast.makeText(Login.this,"Please enter valid email.",Toast.LENGTH_LONG).show();
         else
         {
+            final ProgressDialog progressDialog=ProgressDialog.show(Login.this,"Logging in...", "Please Wait",true);
+
             firebaseAuth.signInWithEmailAndPassword(name, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -129,6 +137,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.hasChild(uid))
                                 {
+                                    progressDialog.dismiss();
                                     Toast.makeText(Login.this, "Login successful ", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(Login.this, StudentOptions.class);
                                     finish();

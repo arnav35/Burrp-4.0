@@ -12,17 +12,30 @@
     android:orientation="vertical">
 
     <Button
+    android:text="Search by Bhaji"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/searchBhaji" />
+
+    <Button
         android:text="Complete Mess List"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/compMess"
         android:layout_marginTop="100dp"
-        android:layout_marginBottom="150dp" />
+        android:layout_marginBottom="100dp" />
 
     <Button
-    android:text="Search by Bhaji"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/searchBhaji" />
+        android:text="Search By Locality"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchLocality"
+        android:layout_marginBottom="100dp" />
+
+    <Button
+        android:text="Show Nearby Mess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nearbyMess" />
 
 </LinearLayout>

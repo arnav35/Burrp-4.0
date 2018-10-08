@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.List;
 
 import static com.example.arnavdesai.burrp.R.id.showGraph;
+import static junit.runner.Version.id;
 
 public class OwnerProfile extends AppCompatActivity implements View.OnClickListener {
 
@@ -31,7 +32,7 @@ public class OwnerProfile extends AppCompatActivity implements View.OnClickListe
     private DatabaseReference databaseReference,databaseReference1;
     private FirebaseUser firebaseUser;
     private String userID,messname;
-    private Button update, logout,messList,menu,showGraph;
+    private Button update, logout,menu,showGraph,showMonthly;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,16 +47,19 @@ public class OwnerProfile extends AppCompatActivity implements View.OnClickListe
         menu=(Button) findViewById(R.id.menucard);
         update = (Button) findViewById(R.id.update_menu);
         logout = (Button) findViewById(R.id.log_out);
-        //messList=(Button)findViewById(R.id.MessList);
+
         update.setOnClickListener(this);
         logout.setOnClickListener(this);
-        //messList.setOnClickListener(this);
         menu.setOnClickListener(this);
+
         bhaji1=(TextView)findViewById(R.id.bhaji1);
         bhaji2=(TextView)findViewById(R.id.bhaji2);
         bhaji3=(TextView)findViewById(R.id.bhaji3);
+
         showGraph=(Button) findViewById(R.id.showGraph);
         showGraph.setOnClickListener(this);
+        showMonthly=(Button) findViewById(R.id.showMonthly);
+        showMonthly.setOnClickListener(this);
         userID=getIntent().getStringExtra("uid");
 
         firebaseAuth=FirebaseAuth.getInstance();
@@ -136,10 +140,7 @@ public class OwnerProfile extends AppCompatActivity implements View.OnClickListe
             intent.putExtra("messName",messname);
             startActivity(intent);
         }
-        if(messList==v){
-            Intent intent=new Intent(OwnerProfile.this, Menu.class);
-            startActivity(intent);
-        }
+
         if(menu==v){
             Intent intent=new Intent(OwnerProfile.this, DisplayMenu.class);
             intent.putExtra("messname",messname);
@@ -154,6 +155,12 @@ public class OwnerProfile extends AppCompatActivity implements View.OnClickListe
         if (v == showGraph)
         {
             Intent intent=new Intent(OwnerProfile.this, graphDaily.class);
+            intent.putExtra("messname",messName.getText().toString().trim());
+            startActivity(intent);
+        }
+        if(v == showMonthly)
+        {
+            Intent intent=new Intent(OwnerProfile.this, graphMonthly.class);
             intent.putExtra("messname",messName.getText().toString().trim());
             startActivity(intent);
         }

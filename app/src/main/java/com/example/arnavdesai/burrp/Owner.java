@@ -1,22 +1,19 @@
 package com.example.arnavdesai.burrp;
 
-/**
- * Created by Arnav Desai on 9/17/2018.
- */
-
 public class Owner {
-    public String name,messName,address,email,phone,password,type;
+    public String name,messName,address,email,phone,password,type,locality;
 
     public Owner() {
     }
 
-    public Owner(String name, String messName, String address, String email, String phone, String password) {
+    public Owner(String name, String messName, String address, String email, String phone, String password,String locality) {
         this.name = name;
         this.messName = messName;
         this.address = address;
         this.email = email;
         this.phone = phone;
         this.password = password;
+        this.locality=locality;
         type="Owner";
     }
 

@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,7 +20,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static android.os.Build.VERSION_CODES.O;
@@ -29,12 +33,13 @@ public class OwnerSignup extends AppCompatActivity implements View.OnClickListen
     private Button ownerBut;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
-    private FirebaseDatabase firebaseDatabase;
     private  String userID;
+    private Spinner spinner;              //getting a locality chooser spinner
     int flag=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_signup);
         name=(EditText) findViewById(R.id.OwnerNameEdit);
@@ -43,14 +48,24 @@ public class OwnerSignup extends AppCompatActivity implements View.OnClickListen
         email=(EditText) findViewById(R.id.OwnerEmailEdit);
         phone=(EditText) findViewById(R.id.OwnerPhoneEdit);
         password=(EditText) findViewById(R.id.OwnerPasswordEdit);
+        spinner = (Spinner) findViewById(R.id.spinner);
         ownerBut=(Button) findViewById(R.id.OwnerLoginButton);
 
         firebaseAuth=FirebaseAuth.getInstance();
 
         ownerBut.setOnClickListener(this);
+        List<String> localities = new ArrayList<String>();  // a list to be displayed in the spinner
+        localities.add("Sahakarnagar");
+        localities.add("PVG College");
+        localities.add("VIT College");
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, localities);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);  //setting view of dropdown
+        spinner.setAdapter(dataAdapter);
     }
 
-/*    public void ownerSignup(String email, String password)
+
+    public void ownerSignup(final String email, final String password)
     {
         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -58,64 +73,28 @@ public class OwnerSignup extends AppCompatActivity implements View.OnClickListen
                 if(task.isSuccessful())
                 {
                     Toast.makeText(OwnerSignup.this, "Signup successful" ,Toast.LENGTH_SHORT).show();
+                    firebaseAuth.signInWithEmailAndPassword(email, password); //Signed in to set uid to object in firebase.
+                    owneradd();
                 }
                 if(!task.isSuccessful())
                 {
-                    Toast.makeText(OwnerSignup.this, "Signup unsuccessful" ,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OwnerSignup.this, "Signup unsuccessful. Email already exists." ,Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    public void owneradd() throws NullPointerException
-    {
-        Owner owner=new Owner(name.getText().toString().trim(), messName.getText().toString().trim(), address.getText().toString().trim(), email.getText().toString().trim(), phone.getText().toString().trim(), password.getText().toString().trim());
-        databaseReference.child(messName.getText().toString().trim()).setValue(owner);
-
-        Intent intent=new Intent(OwnerSignup.this, OwnerMenu.class);
-        intent.putExtra("messName", owner.getMessName());
-        startActivity(intent);
-    }
-
-    @Override
-    public void onClick(View view)
-    {
-        if(view == ownerBut)
-        {
-            ownerSignup(email.getText().toString().trim(), password.getText().toString().trim());
-            owneradd();
-        }
-    }
-}*/
-public void ownerSignup(final String email, final String password)
-{
-    firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-        @Override
-        public void onComplete(@NonNull Task<AuthResult> task) {
-            if(task.isSuccessful())
-            {
-                Toast.makeText(OwnerSignup.this, "Signup successful" ,Toast.LENGTH_SHORT).show();
-                firebaseAuth.signInWithEmailAndPassword(email, password); //Signed in to set uid to object in firebase.
-                owneradd();
-            }
-            if(!task.isSuccessful())
-            {
-                Toast.makeText(OwnerSignup.this, "Signup unsuccessful. Email already exists." ,Toast.LENGTH_SHORT).show();
-            }
-        }
-    });
-}
-
 
     public void owneradd() throws NullPointerException
     {
-        Owner owner=new Owner(name.getText().toString().trim(), messName.getText().toString().trim(), address.getText().toString().trim(), email.getText().toString().trim(), phone.getText().toString().trim(), password.getText().toString().trim());
+        Owner owner=new Owner(name.getText().toString().trim(), messName.getText().toString().trim(), address.getText().toString().trim(), email.getText().toString().trim(), phone.getText().toString().trim(), password.getText().toString().trim(),spinner.getSelectedItem().toString());
+        //set the owner object its locality through constructor.
+
         Visited V = new Visited();   //empty visited class.
 
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         String uid = firebaseUser.getUid();
 
-        databaseReference.child("AllUsers").child(uid).setValue(owner);
         databaseReference.child("Owner").child(uid).setValue(owner);
         databaseReference.child("Count").child(messName.getText().toString().trim()).setValue(V); //setting empty visited class.
 
@@ -138,4 +117,3 @@ public void ownerSignup(final String email, final String password)
         }
     }
 }
-

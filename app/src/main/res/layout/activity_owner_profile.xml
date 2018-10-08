@@ -156,9 +156,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <Button
             android:id="@+id/update_menu"
@@ -166,23 +167,32 @@
             android:layout_height="wrap_content"
             android:text="Update Menu"
             android:textStyle="bold"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:layout_weight="0.98" />
 
         <Button
             android:id="@+id/menucard"
-            android:layout_width="wrap_content"
+            android:layout_width="182dp"
             android:layout_height="wrap_content"
             android:text="Menu Card"
             android:textStyle="bold"
             android:textSize="10sp" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
         <Button
-            android:id="@+id/log_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Log Out"
+            android:id="@+id/showMonthly"
+            android:text="Show Monthly Graph"
             android:textStyle="bold"
-            android:textSize="10sp" />
+            android:textSize="10dp"
+            android:layout_weight="1" />
 
         <Button
             android:layout_width="wrap_content"
@@ -190,8 +200,23 @@
             android:text="Show Daily Graph"
             android:id="@+id/showGraph"
             android:textStyle="bold"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:layout_weight="1" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/log_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:layout_weight="1" />
     </LinearLayout>
 
 </LinearLayout>

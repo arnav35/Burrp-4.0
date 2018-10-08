@@ -3,96 +3,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_user_type"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.arnavdesai.burrp.UserType"
-    android:orientation="vertical">
+    tools:context="com.example.arnavdesai.burrp.UserType">
 
     <TextView
-        android:text="@string/Name"
+        android:id="@+id/OwnerNameText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/OwnerNameText" />
+        android:text="@string/Name" />
 
     <EditText
+        android:id="@+id/OwnerNameEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/OwnerNameEdit" />
+        android:inputType="textPersonName" />
 
     <TextView
+        android:id="@+id/OwnerMessText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/OwnerMessText"
         android:text="@string/Mess" />
 
     <EditText
+        android:id="@+id/OwnerMessEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/OwnerMessEdit" />
+        android:inputType="textPersonName" />
 
     <TextView
+        android:id="@+id/OwnerAddressText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/OwnerAddressText"
         android:text="@string/Address" />
 
     <EditText
+        android:id="@+id/OwnerAddressEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
         android:ems="10"
-        android:id="@+id/OwnerAddressEdit" />
+        android:inputType="textMultiLine" />
 
     <TextView
-        android:text="@string/Email"
+        android:id="@+id/OwnerEmailText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/OwnerEmailText" />
+        android:text="@string/Email" />
 
     <EditText
+        android:id="@+id/OwnerEmailEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/OwnerEmailEdit" />
+        android:inputType="textEmailAddress" />
 
     <TextView
-        android:text="@string/PhoneNumber"
+        android:id="@+id/OwnerPhoneText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/OwnerPhoneText" />
+        android:text="@string/PhoneNumber" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
         android:id="@+id/OwnerPhoneEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
         android:inputType="phone" />
 
     <TextView
-        android:text="@string/Password"
+        android:id="@+id/OwnerPasswordText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/OwnerPasswordText" />
+        android:text="@string/Password" />
 
     <EditText
+        android:id="@+id/OwnerPasswordEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/OwnerPasswordEdit" />
+        android:inputType="textPassword" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
-        android:text="@string/LoginButton"
+        android:id="@+id/OwnerLoginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/OwnerLoginButton" />
+        android:text="@string/LoginButton" />
 
 </LinearLayout>

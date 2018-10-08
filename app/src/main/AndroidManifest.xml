@@ -81,7 +81,11 @@
             android:label="@string/title_activity_mess_location" />
         <activity android:name=".graphMonthly" />
         <activity android:name=".MessList" />
-        <activity android:name=".StudentOptions"></activity>
+        <activity android:name=".StudentOptions" />
+        <activity android:name=".SearchByLocality" />
+        <activity
+            android:name=".nearbyMess"
+            android:label="@string/title_activity_nearby_mess"></activity>
     </application>
 
 </manifest>

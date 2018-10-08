@@ -9,6 +9,8 @@ import android.util.StringBuilderPrinter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -45,6 +47,7 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
     private View linearLayout;
     private EditText reviewEdit;
     private Button btnComing,showLoc;
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +66,9 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
         sendRatingReview.setOnClickListener(this);
         btnComing = (Button) findViewById(R.id.comingButton);
         showLoc=(Button) findViewById(R.id.showLocation);
+        back=(ImageView) findViewById(R.id.back);
 
+        back.setOnClickListener(this);
         showLoc.setOnClickListener(this);
         btnComing.setOnClickListener(this);
         name=getIntent().getStringExtra("messName");
@@ -213,7 +218,6 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
 
                 databaseReference=firebaseDatabase.getInstance().getReference();
                 databaseReference.child("Rating").updateChildren(mobj);
-                finish();
             }
 
             @Override
@@ -241,7 +245,13 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
             intent.putExtra("uid",userID);
             startActivity(intent);
         }
+        if(v==back)
+        {
+            Intent intent=new Intent(StudentMenu.this, MessList.class);
+            startActivity(intent);
+        }
     }
+
     private void i_am_coming() {
         databaseReference = FirebaseDatabase.getInstance().getReference("Count");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_student_menu"
     android:layout_width="match_parent"
@@ -10,6 +11,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.arnavdesai.burrp.StudentMenu"
     android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/back"
+        android:id="@+id/back" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,13 +34,15 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/MessName"
                 android:textSize="18sp"
-                android:textStyle="normal|bold" />
+                android:textStyle="normal|bold"
+                android:textColor="@android:color/holo_red_dark" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/MessNameText"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textColor="@android:color/holo_green_light" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -41,13 +50,15 @@
                 android:id="@+id/MessAddress"
                 android:text="@string/Address"
                 android:textSize="18sp"
-                android:textStyle="normal|bold" />
+                android:textStyle="normal|bold"
+                android:textColor="@android:color/holo_red_dark" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/MessAddressText"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textColor="@android:color/holo_green_light" />
 
             <TextView
                 android:text="@string/PhoneNumber"
@@ -55,13 +66,15 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/PhoneNumber"
                 android:textSize="18sp"
-                android:textStyle="normal|bold" />
+                android:textStyle="normal|bold"
+                android:textColor="@android:color/holo_red_dark" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/PhoneNumberText"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textColor="@android:color/holo_green_light" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -69,13 +82,15 @@
                 android:id="@+id/Email"
                 android:text="@string/Email"
                 android:textSize="18sp"
-                android:textStyle="normal|bold" />
+                android:textStyle="normal|bold"
+                android:textColor="@android:color/holo_red_dark" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/EmailText"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textColor="@android:color/holo_green_light" />
 
             <TextView
                 android:text="@string/AddRating"
@@ -83,7 +98,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/RatingText"
                 android:textSize="18sp"
-                android:textStyle="normal|bold" />
+                android:textStyle="normal|bold"
+                android:textColor="@android:color/holo_red_dark" />
 
             <RatingBar
                 android:layout_width="wrap_content"
@@ -103,7 +119,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/ReviewText"
                 android:textSize="18sp"
-                android:textStyle="normal|bold" />
+                android:textStyle="normal|bold"
+                android:textColor="@android:color/holo_red_dark" />
 
             <EditText
                 android:layout_width="match_parent"
