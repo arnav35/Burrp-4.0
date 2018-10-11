@@ -147,12 +147,27 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/comingButton" />
 
-            <TextView
-                android:text="@string/DailyMenu"
+            <Button
+                android:id="@+id/show_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/DailyMenuText"
-                android:textSize="18sp" />
+                android:layout_marginTop="5dp"
+                android:text="Todays Menu" />
+
+            <Button
+                android:id="@+id/show_menucrd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Menu Card" />
+
+            <Button
+                android:id="@+id/showReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Show Review" />
+s
         </LinearLayout>
     </ScrollView>
 

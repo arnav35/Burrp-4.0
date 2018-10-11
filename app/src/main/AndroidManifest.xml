@@ -85,7 +85,10 @@
         <activity android:name=".SearchByLocality" />
         <activity
             android:name=".nearbyMess"
-            android:label="@string/title_activity_nearby_mess"></activity>
+            android:label="@string/title_activity_nearby_mess" />
+        <activity android:name=".Ownerbhajitostudent" />
+        <activity android:name=".OwnermenutoStudent" />
+        <activity android:name=".showReview"></activity>
     </application>
 
 </manifest>

@@ -80,6 +80,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                     startActivity(intent);
                                 }
                                 else {
+                                    progressDialog.dismiss();
                                     Toast.makeText(Login.this,"You are not a mess owner. Please login as a student",Toast.LENGTH_LONG).show();
                                 }
                             }
@@ -144,6 +145,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                     startActivity(intent);
                                 }
                                 else {
+                                    progressDialog.dismiss();
                                     Toast.makeText(Login.this,"You are not a Student. Please login as a Owner",Toast.LENGTH_LONG).show();
                                 }
                             }

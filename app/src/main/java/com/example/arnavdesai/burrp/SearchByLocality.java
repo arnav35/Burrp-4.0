@@ -1,6 +1,7 @@
 package com.example.arnavdesai.burrp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -36,6 +38,7 @@ public class SearchByLocality extends AppCompatActivity implements View.OnClickL
     private Spinner spinner;
     private EditText bhajiEdit;
     private Button search ;
+    private ImageView back;
     private DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
     private DatabaseReference referenceBhaji = FirebaseDatabase.getInstance().getReference("Daily Menu");
     int count=0;
@@ -51,6 +54,8 @@ public class SearchByLocality extends AppCompatActivity implements View.OnClickL
         bhajiEdit = (EditText) findViewById(R.id.editbhaji);
         search = (Button) findViewById(R.id.buttonSearch);
         search.setOnClickListener(this);
+        back=(ImageView)findViewById(R.id.backLoca);
+        back.setOnClickListener(this);
 
         localities = new ArrayList<String>();  // a list to be displayed in the spinner
         localities.add("Sahakarnagar");
@@ -179,6 +184,11 @@ public class SearchByLocality extends AppCompatActivity implements View.OnClickL
         if(view == search){
             functionOne();
             functionTwo();
+        }
+        if(view==back)
+        {
+            Intent intent=new Intent(SearchByLocality.this, StudentOptions.class);
+            startActivity(intent);
         }
     }
 }

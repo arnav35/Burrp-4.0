@@ -15,49 +15,57 @@
         android:text="@string/Mess"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/MessName" />
+        android:id="@+id/MessName"
+        android:textColor="@android:color/holo_red_dark" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/MessNameText"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="@android:color/holo_green_light" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/MessAddress"
-        android:text="@string/Address" />
+        android:text="@string/Address"
+        android:textColor="@android:color/holo_red_dark" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/MessAddressText"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="@android:color/holo_green_light" />
 
     <TextView
         android:text="@string/PhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/PhoneNumber" />
+        android:id="@+id/PhoneNumber"
+        android:textColor="@android:color/holo_red_dark" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/PhoneNumberText"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="@android:color/holo_green_light" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/Email"
-        android:text="@string/Email" />
+        android:text="@string/Email"
+        android:textColor="@android:color/holo_red_dark" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/EmailText"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="@android:color/holo_green_light" />
 
     <Button
         android:text="@string/AddMenu"
@@ -76,5 +84,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/add_location" />
+
+    <Button
+        android:text="Logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/logout" />
+
+    <ProgressBar
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_marginTop="150dp" />
 
 </LinearLayout>

@@ -1,9 +1,12 @@
 package com.example.arnavdesai.burrp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,6 +25,7 @@ public class MessList extends AppCompatActivity {
     String[] addressArray;
     String[] ratingArray;
     ListView listview;
+    ImageView back;
     private DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
     int count=0;
 
@@ -30,6 +34,14 @@ public class MessList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mess_list);
 
+        back=(ImageView)findViewById(R.id.backList);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MessList.this, StudentOptions.class);
+                startActivity(intent);
+            }
+        });
 
         databaseReference=FirebaseDatabase.getInstance().getReference("Rating");
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -58,7 +70,7 @@ public class MessList extends AppCompatActivity {
         });
     }
 
-    private String[] showRating(DataSnapshot dataSnapshot) throws NullPointerException {
+    private String[] showRating(DataSnapshot dataSnapshot) {
 
         count=(int)dataSnapshot.getChildrenCount();
         ratingArray=new String[count];

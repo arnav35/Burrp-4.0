@@ -10,9 +10,6 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-/**
- * Created by Arnav Desai on 9/7/2018.
- */
 
 public class CustomListAdapter2 extends ArrayAdapter{
     private final Activity context;
@@ -52,6 +49,7 @@ public class CustomListAdapter2 extends ArrayAdapter{
             public void onClick(View v) {
                 Intent intent=new Intent(context, StudentMenu.class);
                 intent.putExtra("messName", nameArray[position]);
+                intent.putExtra("id", "2");
                 context.startActivity(intent);
             }
         });

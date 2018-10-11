@@ -16,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static com.example.arnavdesai.burrp.locationListener.location;
+
 public class nearbyMess extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;

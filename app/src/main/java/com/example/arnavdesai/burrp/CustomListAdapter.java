@@ -20,9 +20,6 @@ import static android.R.attr.rating;
 import static android.R.attr.start;
 import static com.example.arnavdesai.burrp.R.id.addressTextfield;
 
-/**
- * Created by Arnav Desai on 9/7/2018.
- */
 
 public class CustomListAdapter extends ArrayAdapter{
     private final Activity context;
@@ -62,6 +59,7 @@ public class CustomListAdapter extends ArrayAdapter{
             public void onClick(View v) {
                 Intent intent=new Intent(context, StudentMenu.class);
                 intent.putExtra("messName", nameArray[position]);
+                intent.putExtra("id","1");
                 context.startActivity(intent);
             }
         });

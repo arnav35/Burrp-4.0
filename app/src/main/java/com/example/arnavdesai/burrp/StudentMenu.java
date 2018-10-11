@@ -1,7 +1,9 @@
 package com.example.arnavdesai.burrp;
 
 import android.content.Intent;
+import android.support.annotation.IntegerRes;
 import android.support.v4.view.MenuCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,14 +32,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 public class StudentMenu extends AppCompatActivity implements View.OnClickListener{
 
     private TextView messName,messAddress,messEmail,messPhone,ratingDisplay;
-    private FirebaseDatabase firebaseDatabase;
-    private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
-    private FirebaseUser firebaseUser;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase firebaseDatabase;
     private String userID,name;
     private RatingBar ratingBar;
     private float ratingValue;
@@ -46,14 +48,16 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
     private TextView[] itemNameText,itemPriceText,dailyMenu;
     private View linearLayout;
     private EditText reviewEdit;
-    private Button btnComing,showLoc;
+    private Button btnComing,showLoc,showmenu1,showMenucard1,showReview;
     private ImageView back;
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_menu);
 
+        showReview=(Button) findViewById(R.id.showReview);
         messName=(TextView) findViewById(R.id.MessNameText);
         messAddress=(TextView) findViewById(R.id.MessAddressText);
         messEmail=(TextView) findViewById(R.id.EmailText);
@@ -61,17 +65,25 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
         ratingDisplay=(TextView) findViewById(R.id.RatingDisplay);
         ratingBar=(RatingBar) findViewById(R.id.ratingBar2);
         sendRatingReview=(Button) findViewById(R.id.sendReviewRating);
-        linearLayout=(View) findViewById(R.id.scroll);
+        linearLayout=findViewById(R.id.scroll);
         reviewEdit=(EditText) findViewById(R.id.ReviewEdit);
         sendRatingReview.setOnClickListener(this);
         btnComing = (Button) findViewById(R.id.comingButton);
         showLoc=(Button) findViewById(R.id.showLocation);
         back=(ImageView) findViewById(R.id.back);
+        showmenu1=(Button)findViewById(R.id.show_menu);
+        showMenucard1=(Button)findViewById(R.id.show_menucrd);
+
 
         back.setOnClickListener(this);
         showLoc.setOnClickListener(this);
         btnComing.setOnClickListener(this);
+        showmenu1.setOnClickListener(this);
+        showMenucard1.setOnClickListener(this);
+        showReview.setOnClickListener(this);
+
         name=getIntent().getStringExtra("messName");
+        id=Integer.parseInt(getIntent().getStringExtra("id"));
 
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
@@ -89,7 +101,7 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                showData(dataSnapshot);
+                userID=showData(dataSnapshot);
             }
 
             @Override
@@ -98,7 +110,7 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
             }
         });
 
-        databaseReference=firebaseDatabase.getInstance().getReference("Daily Menu");
+        /*databaseReference=firebaseDatabase.getInstance().getReference("Daily Menu");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -123,6 +135,42 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
 
             }
         });
+
+        databaseReference=firebaseDatabase.getInstance().getReference("Review");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                showReview(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });*/
+
+    }
+
+    private void showReview(DataSnapshot dataSnapshot) {
+
+            int count=(int)dataSnapshot.child(userID).getChildrenCount();
+
+            TextView[] review = new TextView[count + 1];
+
+            review[0] = new TextView(this);
+            review[0].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                review[0].setText("Reviews");
+            ((LinearLayout) linearLayout).addView(review[0]);
+            int j=1;
+
+            for(DataSnapshot ds: dataSnapshot.child(userID).getChildren())
+            {
+                review[j]=new TextView(this);
+                review[j].setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                review[j].setText(ds.getValue(String.class));
+                ((LinearLayout) linearLayout).addView(review[j]);
+                j++;
+            }
     }
 
     private void showMenu(DataSnapshot dataSnapshot) {
@@ -180,7 +228,7 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
     }
 
 
-    private void showData(DataSnapshot dataSnapshot) throws NullPointerException{
+    private String showData(DataSnapshot dataSnapshot) throws NullPointerException{
 
         for(DataSnapshot ds: dataSnapshot.getChildren())
         {
@@ -196,6 +244,7 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
         messAddress.setText(owner.getAddress());
         messEmail.setText(owner.getEmail());
         messPhone.setText(owner.getPhone());
+        return userID;
     }
 
     public void addRating() throws NullPointerException
@@ -245,10 +294,33 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
             intent.putExtra("uid",userID);
             startActivity(intent);
         }
+        if(v==showmenu1){
+            Intent intent=new Intent(StudentMenu.this,Ownerbhajitostudent.class);
+            intent.putExtra("uid",name);
+            startActivity(intent);
+        }
+        if(v==showMenucard1){
+            Intent intent=new Intent(StudentMenu.this,OwnermenutoStudent.class);
+            intent.putExtra("uid",name);
+            startActivity(intent);
+        }
+        if(v==showReview)
+        {
+            Intent intent=new Intent(this, showReview.class);
+            intent.putExtra("uid",name);
+            startActivity(intent);
+        }
         if(v==back)
         {
-            Intent intent=new Intent(StudentMenu.this, MessList.class);
-            startActivity(intent);
+            if(id==1){
+                Intent intent=new Intent(StudentMenu.this, MessList.class);
+                startActivity(intent);
+            }
+            if(id==2)
+            {
+                Intent intent=new Intent(StudentMenu.this, Menu.class);
+                startActivity(intent);
+            }
         }
     }
 
@@ -257,18 +329,6 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                /*Visited V = new Visited();
-                V=dataSnapshot.child(name).getValue(Visited.class);
-                String weekday_name = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(System.currentTimeMillis());
-                if(weekday_name.equals("Monday")) V.update(1);
-                if(weekday_name.equals("Tuesday")) V.update(2);
-                if(weekday_name.equals("Wednesday")) V.update(3);
-                if(weekday_name.equals("Thurs")) V.update(4);
-                if(weekday_name.equals("Friday")) V.update(5);
-                if(weekday_name.equals("Saturday")) V.update(6);
-                if(weekday_name.equals("Sunday")) V.update(7);
-                databaseReference.child(name).setValue(V);
-                */
 
                 Visited V = new Visited();
                 V=dataSnapshot.child(name).getValue(Visited.class);
@@ -289,7 +349,7 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
 
     private void addReview() {
         databaseReference=firebaseDatabase.getInstance().getReference();
-        databaseReference.child("Review").child(userID).setValue(reviewEdit.getText().toString());
+        databaseReference.child("Review").child(userID).push().setValue(reviewEdit.getText().toString());
         finish();
     }
 }
