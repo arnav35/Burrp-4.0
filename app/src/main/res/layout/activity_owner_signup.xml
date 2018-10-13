@@ -15,7 +15,8 @@
         android:id="@+id/OwnerNameText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Name" />
+        android:text="@string/Name"
+        android:textColor="@android:color/holo_red_dark" />
 
     <EditText
         android:id="@+id/OwnerNameEdit"
@@ -28,7 +29,8 @@
         android:id="@+id/OwnerMessText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Mess" />
+        android:text="@string/Mess"
+        android:textColor="@android:color/holo_red_dark" />
 
     <EditText
         android:id="@+id/OwnerMessEdit"
@@ -41,7 +43,8 @@
         android:id="@+id/OwnerAddressText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Address" />
+        android:text="@string/Address"
+        android:textColor="@android:color/holo_red_dark" />
 
     <EditText
         android:id="@+id/OwnerAddressEdit"
@@ -54,7 +57,8 @@
         android:id="@+id/OwnerEmailText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Email" />
+        android:text="@string/Email"
+        android:textColor="@android:color/holo_red_dark" />
 
     <EditText
         android:id="@+id/OwnerEmailEdit"
@@ -67,7 +71,8 @@
         android:id="@+id/OwnerPhoneText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/PhoneNumber" />
+        android:text="@string/PhoneNumber"
+        android:textColor="@android:color/holo_red_dark" />
 
     <EditText
         android:id="@+id/OwnerPhoneEdit"
@@ -80,7 +85,8 @@
         android:id="@+id/OwnerPasswordText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Password" />
+        android:text="@string/Password"
+        android:textColor="@android:color/holo_red_dark" />
 
     <EditText
         android:id="@+id/OwnerPasswordEdit"
@@ -88,6 +94,13 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword" />
+
+    <TextView
+        android:text="Locality"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView6"
+        android:textColor="@android:color/holo_red_dark" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -98,6 +111,8 @@
         android:id="@+id/OwnerLoginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/LoginButton" />
+        android:background="@drawable/button_background"
+        android:text="Signup"
+        android:layout_marginTop="10dp" />
 
 </LinearLayout>

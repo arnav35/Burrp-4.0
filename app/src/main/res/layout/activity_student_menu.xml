@@ -132,42 +132,56 @@
             <Button
                 android:text="@string/SendRatingReview"
                 android:id="@+id/sendReviewRating"
+                android:background="@drawable/button_background"
+
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent" />
+                android:layout_width="match_parent"
+                android:layout_marginBottom="10dp" />
 
             <Button
                 android:text="Show Location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/showLocation" />
+                android:background="@drawable/button_background"
+
+                android:id="@+id/showLocation"
+                android:layout_marginBottom="10dp" />
 
             <Button
                 android:text="Eat at Mess"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/comingButton" />
+                android:background="@drawable/button_background"
+
+                android:id="@+id/comingButton"
+                android:layout_marginBottom="10dp" />
 
             <Button
                 android:id="@+id/show_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Todays Menu" />
+                android:background="@drawable/button_background"
+
+                android:text="Show Today's Menu"
+                android:layout_marginBottom="10dp" />
 
             <Button
                 android:id="@+id/show_menucrd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Menu Card" />
+                android:background="@drawable/button_background"
+
+                android:text="Show Menu Card"
+                android:layout_marginBottom="10dp" />
 
             <Button
                 android:id="@+id/showReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:background="@drawable/button_background"
+
                 android:text="Show Review" />
-s
+
         </LinearLayout>
     </ScrollView>
 

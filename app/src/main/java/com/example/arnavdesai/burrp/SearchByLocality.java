@@ -43,28 +43,27 @@ public class SearchByLocality extends AppCompatActivity implements View.OnClickL
     private DatabaseReference referenceBhaji = FirebaseDatabase.getInstance().getReference("Daily Menu");
     int count=0;
     List<String> localities;
-    ArrayAdapter<String> dataAdapter;
-
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_search_by_locality);
         spinner = (Spinner) findViewById(R.id.spinner2);
         bhajiEdit = (EditText) findViewById(R.id.editbhaji);
         search = (Button) findViewById(R.id.buttonSearch);
         search.setOnClickListener(this);
         back=(ImageView)findViewById(R.id.backLoca);
-        back.setOnClickListener(this);
+        //back.setOnClickListener(this);
 
         localities = new ArrayList<String>();  // a list to be displayed in the spinner
         localities.add("Sahakarnagar");
         localities.add("PVG College");
         localities.add("VIT College");
 
-        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, localities);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);  //setting view of dropdown
-        spinner.setAdapter(dataAdapter);
+        adapter = new ArrayAdapter<String>(SearchByLocality.this, android.R.layout.simple_spinner_item, localities);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);  //setting view of dropdown
+        spinner.setAdapter(adapter);
     }
 
     public void functionOne() {
@@ -167,11 +166,10 @@ public class SearchByLocality extends AppCompatActivity implements View.OnClickL
 
             }
 
-            CustomListAdapter customListAdapter = new CustomListAdapter(this, nameArray, addressArray, ratingArrayFinal);
+            CustomListAdapter2 customListAdapter = new CustomListAdapter2(this, nameArray, addressArray, ratingArrayFinal);
             listview = (ListView) findViewById(R.id.listviewID);
             listview.setAdapter(customListAdapter);
         }
-
     }
 
     void getCount(DataSnapshot dataSnapshot) throws NullPointerException

@@ -29,20 +29,19 @@
         <TextView
             android:text="@string/Welcome"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:id="@+id/textView"
-            android:gravity="center"
             android:textSize="30sp"
-            android:layout_weight="0.70" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="94dp" />
+            android:layout_weight="0.70"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:textAppearance="@android:style/TextAppearance.Material" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/LoginButt"
+            android:background="@drawable/button_background"
             style="@style/Widget.AppCompat.Button"
             android:text="@string/LoginButton" />
 
@@ -50,8 +49,10 @@
             android:text="@string/SignupButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
             android:id="@+id/SignupButt"
-            style="@style/Widget.AppCompat.Button" />
+            style="@style/Widget.AppCompat.Button"
+            android:layout_marginTop="20dp" />
 
     </LinearLayout>
 </RelativeLayout>

@@ -1,11 +1,14 @@
 package com.example.arnavdesai.burrp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -14,6 +17,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.arnavdesai.burrp.R.drawable.c;
 
 public class add_dailyMenu extends AppCompatActivity implements View.OnClickListener {
     private Button save,add;
@@ -34,32 +39,33 @@ public class add_dailyMenu extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_add_dailymenu);
 
         userID=getIntent().getStringExtra("uid");
+
         linearLayout=findViewById(R.id.addmenu);
         save=(Button)findViewById(R.id.btsave);
         add=(Button) findViewById(R.id.addBhaji);
+
         save.setOnClickListener(this);
         add.setOnClickListener(this);
-
         firebaseAuth=FirebaseAuth.getInstance();
         databaseReference=firebaseDatabase.getInstance().getReference("Daily Menu");
     }
 
 
 
-    public void addToDatabase() throws  NullPointerException
+    public void addToDatabase() throws  NullPointerException//add daily bhaji data to database
     {
-        bhajiString=new ArrayList<String>();
+        bhajiString = new ArrayList<String>();
 
-        for(int i=0; i<count; i++)
-        {
-            bhajiString.add(i,bhaji[i].getText().toString().trim());
+        for (int i = 0; i < count; i++) {
+            bhajiString.add(i, bhaji[i].getText().toString().trim());
         }
 
-        MenuCard menuCard=new MenuCard(bhajiString);
+        MenuCard menuCard = new MenuCard(bhajiString);
 
         databaseReference.child(userID).setValue(menuCard);
         finish();
     }
+
     @Override
     public void onClick(View view) {
         if(view == save){

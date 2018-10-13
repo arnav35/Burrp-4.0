@@ -24,8 +24,6 @@ public class UpdateActivity_Owner extends AppCompatActivity implements View.OnCl
         messName=getIntent().getStringExtra("messName");
     }
 
-
-
     @Override
     public void onClick(View v) {
         if(v==updateMenu){

@@ -40,6 +40,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginTop="30dp"
         android:text="Save"
+        android:background="@drawable/button_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

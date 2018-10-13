@@ -39,6 +39,7 @@ public class OwnerMenu extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_menu);
 
+
         messName=(TextView) findViewById(R.id.MessNameText);
         messAddress=(TextView) findViewById(R.id.MessAddressText);
         messEmail=(TextView) findViewById(R.id.EmailText);

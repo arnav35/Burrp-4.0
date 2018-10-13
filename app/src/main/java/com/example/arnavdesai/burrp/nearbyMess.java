@@ -20,6 +20,7 @@ import static com.example.arnavdesai.burrp.locationListener.location;
 
 public class nearbyMess extends FragmentActivity implements OnMapReadyCallback {
 
+
     private GoogleMap mMap;
     private DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Mess Location");
 

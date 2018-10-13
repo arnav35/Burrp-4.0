@@ -8,59 +8,47 @@
     android:orientation="vertical">
 
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </LinearLayout>
-
     <Button
         android:id="@+id/upmessname"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="20dp"
         android:text="Update Mess Name "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.015"
-        tools:layout_editor_absoluteX="8dp"
+        android:background="@drawable/button_background"
         tools:text="Change Mess Name"
         android:layout_gravity="center" />
 
     <Button
         android:id="@+id/upcontactno"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
         android:text="Update Contact No"
-        app:layout_constraintTop_toBottomOf="@+id/upmessname"
-        tools:layout_editor_absoluteX="8dp"
+        android:background="@drawable/button_background"
         tools:text="Update Contact Number"
         android:layout_gravity="center" />
 
     <Button
         android:id="@+id/upAddress"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
         android:text="Update Mess Address"
-        app:layout_constraintTop_toBottomOf="@+id/upcontactno"
-        tools:layout_editor_absoluteX="8dp"
         tools:text="Update Mess Address"
+        android:background="@drawable/button_background"
+
         android:layout_gravity="center" />
 
     <Button
         android:id="@+id/upPassword"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
         android:text="Update Password"
-        app:layout_constraintTop_toBottomOf="@+id/upAddress"
         tools:text="Update Password"
-        tools:layout_editor_absoluteX="8dp"
+        android:background="@drawable/button_background"
+
         android:layout_gravity="center" />
 
 </LinearLayout>

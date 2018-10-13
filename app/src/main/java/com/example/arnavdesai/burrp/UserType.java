@@ -10,6 +10,7 @@ public class UserType extends AppCompatActivity implements View.OnClickListener{
 
     private Button studentBut,ownerBut;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

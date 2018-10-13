@@ -26,6 +26,7 @@ public class Signup extends AppCompatActivity implements View.OnClickListener{
     private DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
     int flag=0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

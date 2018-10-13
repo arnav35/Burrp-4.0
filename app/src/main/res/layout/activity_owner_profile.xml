@@ -168,7 +168,10 @@
             android:text="Update Menu"
             android:textStyle="bold"
             android:textSize="10sp"
-            android:layout_weight="0.98" />
+            android:background="@drawable/button_background"
+
+            android:layout_weight="0.98"
+            android:layout_marginBottom="10dp" />
 
         <Button
             android:id="@+id/menucard"
@@ -176,6 +179,8 @@
             android:layout_height="wrap_content"
             android:text="Menu Card"
             android:textStyle="bold"
+            android:background="@drawable/button_background"
+
             android:textSize="10sp" />
 
     </LinearLayout>
@@ -192,7 +197,10 @@
             android:text="Show Monthly Graph"
             android:textStyle="bold"
             android:textSize="10dp"
-            android:layout_weight="1" />
+            android:background="@drawable/button_background"
+
+            android:layout_weight="1"
+            android:layout_marginBottom="10dp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -201,6 +209,8 @@
             android:id="@+id/showGraph"
             android:textStyle="bold"
             android:textSize="10sp"
+            android:background="@drawable/button_background"
+
             android:layout_weight="1" />
     </LinearLayout>
 
@@ -215,6 +225,8 @@
             android:layout_height="wrap_content"
             android:text="Log Out"
             android:textStyle="bold"
+            android:background="@drawable/button_background"
+
             android:textSize="10sp"
             android:layout_weight="1" />
     </LinearLayout>

@@ -15,27 +15,42 @@
     android:text="Search by Bhaji"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/searchBhaji" />
+        android:background="@drawable/button_background"
+        android:id="@+id/searchBhaji" />
 
     <Button
         android:text="Complete Mess List"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/compMess"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="100dp" />
+        android:background="@drawable/button_background"
+
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp" />
 
     <Button
         android:text="Search By Locality"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/searchLocality"
-        android:layout_marginBottom="100dp" />
+        android:background="@drawable/button_background"
+        android:layout_marginBottom="50dp" />
 
     <Button
         android:text="Show Nearby Mess"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/nearbyMess" />
+        android:id="@+id/nearbyMess"
+        android:background="@drawable/button_background"
+
+        android:layout_marginBottom="50dp" />
+
+    <Button
+        android:text="Logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+
+        android:id="@+id/LogOutMenu" />
 
 </LinearLayout>

@@ -9,8 +9,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +32,7 @@ public class addMenu extends AppCompatActivity implements View.OnClickListener{
 
 
     private EditText numberofItem;
-    int count=0;
+    int count=0,flag=0;
     private EditText[] ItemNameEdit,ItemPriceEdit;
     private Button add,enter;
     private View linearLayout;
@@ -56,7 +58,6 @@ public class addMenu extends AppCompatActivity implements View.OnClickListener{
     {
 
         count=Integer.valueOf(numberofItem.getText().toString());
-        Log.d("Burrp",String.valueOf(count));
 
         ItemNameEdit=new EditText[count];
         ItemPriceEdit=new EditText[count];
@@ -77,9 +78,9 @@ public class addMenu extends AppCompatActivity implements View.OnClickListener{
     private void addtoDatabase() throws NullPointerException
     {
         List<String> name=new ArrayList<String>();
-
         List<String> price=new ArrayList<String>();
 
+        flag=1;
 
         for(int i=0;i<count;i++)
         {

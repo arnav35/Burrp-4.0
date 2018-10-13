@@ -20,19 +20,20 @@
             android:layout_marginRight="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
+
             android:layout_marginTop="100dp"
             android:text="Update menu" />
 
         <Button
-    android:id="@+id/update_details"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Account Setting"
-    android:layout_marginTop="50dp"
-    android:layout_marginLeft="30dp"
-    android:layout_marginRight="30dp"
-    tools:layout_editor_absoluteX="68dp"
-    tools:layout_editor_absoluteY="412dp" />
+            android:id="@+id/update_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Account Setting"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/button_background"
+            android:layout_marginRight="30dp"/>
 
     </LinearLayout>
 

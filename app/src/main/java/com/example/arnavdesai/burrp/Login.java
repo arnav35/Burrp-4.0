@@ -1,11 +1,15 @@
 package com.example.arnavdesai.burrp;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +26,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Calendar;
 
 public class Login extends AppCompatActivity implements View.OnClickListener{
 
@@ -42,6 +48,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         nameEdit=(EditText) findViewById(R.id.LoginNameEdit);
         passEdit=(EditText) findViewById(R.id.LoginPasswordEdit);
         forgetPassword=(TextView)findViewById(R.id.forgetPassword);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY,17);
+        calendar.set(Calendar.MINUTE,20);
+        calendar.set(Calendar.SECOND,1);
+        Intent intent=new Intent(getApplicationContext(),Notification_receiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager =(AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
+
         firebaseAuth=FirebaseAuth.getInstance();
         LoginButtOwner.setOnClickListener(this);
         LoginButtStudent.setOnClickListener(this);
@@ -92,6 +108,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                         });
                     }
                     if (!task.isSuccessful()) {
+                        progressDialog.dismiss();
                         Toast.makeText(Login.this, "Login unsuccessful. Please register yourself.", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -157,6 +174,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                         });
                     }
                     if (!task.isSuccessful()) {
+                        progressDialog.dismiss();
                         Toast.makeText(Login.this, "Login unsuccessful. Please register yourself. ", Toast.LENGTH_SHORT).show();
                     }
                 }

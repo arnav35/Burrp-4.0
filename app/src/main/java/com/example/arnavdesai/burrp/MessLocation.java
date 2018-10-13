@@ -20,6 +20,7 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 public class MessLocation extends FragmentActivity implements OnMapReadyCallback {
 
+
     private GoogleMap mMap;
     DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference();
     String uid;

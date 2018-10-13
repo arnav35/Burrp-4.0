@@ -37,6 +37,7 @@ public class OwnerSignup extends AppCompatActivity implements View.OnClickListen
     private Spinner spinner;              //getting a locality chooser spinner
     int flag=0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

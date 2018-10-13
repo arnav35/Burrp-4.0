@@ -9,6 +9,7 @@ public class RatingReview {
     public float avgRating;
     public int noOfStudent;
 
+
     public RatingReview() {
     }
 

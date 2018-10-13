@@ -21,6 +21,7 @@ import static android.R.attr.y;
 
 public class MessList extends AppCompatActivity {
 
+
     String[] nameArray;
     String[] addressArray;
     String[] ratingArray;

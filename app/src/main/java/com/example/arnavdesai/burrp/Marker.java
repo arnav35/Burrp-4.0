@@ -29,6 +29,7 @@ public class Marker extends FragmentActivity implements OnMapReadyCallback {
     Double lat,log;
     Button addLocation;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);

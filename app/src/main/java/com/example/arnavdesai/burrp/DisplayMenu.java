@@ -16,19 +16,21 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
+import static com.example.arnavdesai.burrp.R.id.messname;
+
 
 public class DisplayMenu extends AppCompatActivity implements View.OnClickListener{
     private Button updateMenu;
     private TextView menu1,price1,menu2,price2,menu3,price3;
     private DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Menu");
-    String messname,userID;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_menu);
 
-        messname=getIntent().getStringExtra("messname");
+        userID=getIntent().getStringExtra("uid");
 
         updateMenu=(Button) findViewById(R.id.updateMenu);
         menu1=(TextView) findViewById(R.id.menu1);
@@ -40,19 +42,6 @@ public class DisplayMenu extends AppCompatActivity implements View.OnClickListen
         price3=(TextView) findViewById(R.id.price3);
 
         updateMenu.setOnClickListener(this);
-
-        databaseReference=FirebaseDatabase.getInstance().getReference("Owner");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                getUID(dataSnapshot);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
         databaseReference=FirebaseDatabase.getInstance().getReference("Menu");
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -67,16 +56,6 @@ public class DisplayMenu extends AppCompatActivity implements View.OnClickListen
             }
         });
 
-    }
-
-    private void getUID(DataSnapshot dataSnapshot) throws NullPointerException{
-        for(DataSnapshot ds: dataSnapshot.getChildren())
-        {
-            if(ds.getValue(Owner.class).getMessName().equals(messname))
-            {
-                userID=ds.getKey().toString();
-            }
-        }
     }
 
     private void showMenu(DataSnapshot dataSnapshot) throws NullPointerException{

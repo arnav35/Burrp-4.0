@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 public class graphDaily extends AppCompatActivity {
 
+
     private DatabaseReference databaseReference;
     String messName;
     ArrayList<BarEntry> entries;

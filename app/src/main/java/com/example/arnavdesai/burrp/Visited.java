@@ -5,6 +5,7 @@ public class Visited {
     public int Mon,Tue,Wed,Thu,Fri,Sat,Sun;
     public int Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec;
 
+
     public Visited() {
         Mon = 0;
         Tue = 0;

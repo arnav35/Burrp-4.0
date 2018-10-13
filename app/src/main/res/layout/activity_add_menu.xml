@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_add_menu"
     android:layout_width="match_parent"
@@ -29,6 +30,7 @@
         android:text="Save"
         android:layout_width="match_parent"
         android:id="@+id/addButton"
+        android:background="@drawable/button_background"
         android:layout_height="wrap_content"
         android:paddingTop="10dp" />
 
@@ -36,6 +38,7 @@
         android:text="Add Menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
         android:id="@+id/itemEnter"
         android:layout_marginTop="20dp" />
 

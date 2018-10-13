@@ -26,6 +26,7 @@ import static android.R.attr.y;
 
 public class Menu extends AppCompatActivity implements View.OnClickListener{
 
+
     String[] nameArray;
     String[] addressArray;
     String[] ratingArray;

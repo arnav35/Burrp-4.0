@@ -2,6 +2,7 @@ package com.example.arnavdesai.burrp;
 
 public class mLocation {
 
+
     public Double latitude,longitude;
 
     public mLocation(Double latitude, Double longitude) {

@@ -17,6 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class graphMonthly extends AppCompatActivity {
+
     private DatabaseReference databaseReference;
     String messName;
     ArrayList<BarEntry> entries;

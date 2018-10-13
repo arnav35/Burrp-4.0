@@ -86,14 +86,9 @@
                 <Button
                     android:id="@+id/LoginButtonOwner"
                     android:layout_width="180dp"
-
-
                     android:layout_height="50dp"
-
                     android:layout_gravity="center"
                     android:layout_margin="12dp"
-
-
                     android:background="@drawable/button_background"
                     android:text="Login As Owner"
                     android:textSize="12sp"
@@ -105,8 +100,6 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_margin="12dp"
-
-
                     android:background="@drawable/button_background"
                     android:text="Login as Student"
                     android:textSize="12sp"
@@ -131,7 +124,7 @@
                     android:layout_marginRight="40dp"
                     android:layout_marginTop="10dp"
                     android:id="@+id/forgetPassword"
-                    android:text="Forget Password"
+                    android:text="Forgot Password"
                     android:textColor="#285FBA"
                     android:textSize="15sp"
                     android:textStyle="bold"/>

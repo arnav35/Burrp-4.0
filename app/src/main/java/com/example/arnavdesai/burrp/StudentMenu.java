@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,6 +35,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+
+import static android.os.Build.VERSION_CODES.N;
 
 public class StudentMenu extends AppCompatActivity implements View.OnClickListener{
 
@@ -255,14 +259,16 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+                float newRatingValue=0.1f,dataRating=0;
+
                 countofStudent=dataSnapshot.child(userID).getValue(RatingReview.class).getNoOfStudent();
                 countofStudent=countofStudent+1;
 
-                ratingValue=dataSnapshot.child(userID).getValue(RatingReview.class).getAvgRating();
-                ratingValue=(ratingBar.getRating()+ratingValue)/countofStudent;
+                dataRating=dataSnapshot.child(userID).getValue(RatingReview.class).getAvgRating();
+                newRatingValue=(ratingBar.getRating()+dataRating)/2;
 
                 Map<String,Object> mobj=new HashMap<String,Object>();
-                RatingReview obj=new RatingReview(ratingValue,countofStudent);
+                RatingReview obj=new RatingReview(newRatingValue,countofStudent);
                 mobj.put(userID, obj);
 
                 databaseReference=firebaseDatabase.getInstance().getReference();
@@ -282,7 +288,10 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
         if(v == sendRatingReview)
         {
             addRating();
-            addReview();
+            if(!reviewEdit.getText().equals(null))
+            {
+                addReview();
+            }
         }
         if (v== btnComing)
         {
@@ -350,6 +359,5 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
     private void addReview() {
         databaseReference=firebaseDatabase.getInstance().getReference();
         databaseReference.child("Review").child(userID).push().setValue(reviewEdit.getText().toString());
-        finish();
     }
 }

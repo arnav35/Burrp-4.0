@@ -131,6 +131,7 @@
             android:id="@+id/updateMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
             android:text="Update Menu" />
     </LinearLayout>
 </LinearLayout>

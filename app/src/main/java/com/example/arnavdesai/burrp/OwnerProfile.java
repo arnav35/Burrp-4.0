@@ -38,8 +38,6 @@ public class OwnerProfile extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_profile);
 
-
-
         messName = (TextView) findViewById(R.id.messname);
         messAddress = (TextView) findViewById(R.id.messaddress);
         messPhone = (TextView) findViewById(R.id.messcontact);
@@ -143,7 +141,7 @@ public class OwnerProfile extends AppCompatActivity implements View.OnClickListe
 
         if(menu==v){
             Intent intent=new Intent(OwnerProfile.this, DisplayMenu.class);
-            intent.putExtra("messname",messname);
+            intent.putExtra("uid",userID);
             startActivity(intent);
 
         }

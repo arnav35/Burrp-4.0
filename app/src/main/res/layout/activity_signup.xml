@@ -15,7 +15,8 @@
         android:text="@string/Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/NameText" />
+        android:id="@+id/NameText"
+        android:textColor="@android:color/holo_red_dark" />
 
     <EditText
         android:layout_width="match_parent"
@@ -28,7 +29,8 @@
         android:text="@string/College"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/CollegeText" />
+        android:id="@+id/CollegeText"
+        android:textColor="@android:color/holo_red_dark" />
 
     <EditText
         android:layout_width="match_parent"
@@ -41,7 +43,8 @@
         android:text="@string/PhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/PhoneText" />
+        android:id="@+id/PhoneText"
+        android:textColor="@android:color/holo_red_dark" />
 
     <EditText
         android:layout_width="match_parent"
@@ -54,7 +57,8 @@
         android:text="@string/Email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/EmailText" />
+        android:id="@+id/EmailText"
+        android:textColor="@android:color/holo_red_dark" />
 
     <EditText
         android:layout_width="match_parent"
@@ -67,7 +71,8 @@
         android:text="@string/Password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/PasswordText" />
+        android:id="@+id/PasswordText"
+        android:textColor="@android:color/holo_red_dark" />
 
     <EditText
         android:layout_width="match_parent"
@@ -82,6 +87,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/signupButton"
         android:layout_marginTop="160dp"
+        android:background="@drawable/button_background"
         style="@style/Widget.AppCompat.Button" />
 
 </LinearLayout>

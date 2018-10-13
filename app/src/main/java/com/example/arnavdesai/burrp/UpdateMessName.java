@@ -24,6 +24,7 @@ public class UpdateMessName extends AppCompatActivity implements View.OnClickLis
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     String uid,messName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

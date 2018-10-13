@@ -19,6 +19,7 @@ public class CustomListAdapter2 extends ArrayAdapter{
     private final String[] ratingArray;
     private RatingBar ratingBar;
 
+
     public CustomListAdapter2(Activity context, String[] nameArray, String[] addressArray, String[] ratingArray)
     {
         super(context, R.layout.listview_row, nameArray);

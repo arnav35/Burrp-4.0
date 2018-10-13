@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.MediaController;
 
 public class StudentOptions extends AppCompatActivity implements View.OnClickListener{
-    Button compMess,searchMess,searchLocality,nearby;
+    Button compMess,searchMess,searchLocality,nearby,logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,8 @@ public class StudentOptions extends AppCompatActivity implements View.OnClickLis
         searchMess=(Button) findViewById(R.id.searchBhaji);
         searchLocality=(Button) findViewById(R.id.searchLocality);
         nearby=(Button) findViewById(R.id.nearbyMess);
+        logout=(Button) findViewById(R.id.LogOutMenu);
+        logout.setOnClickListener(this);
         nearby.setOnClickListener(this);
         compMess.setOnClickListener(this);
         searchLocality.setOnClickListener(this);
@@ -45,6 +47,11 @@ public class StudentOptions extends AppCompatActivity implements View.OnClickLis
         if(v==nearby)
         {
             Intent intent=new Intent(StudentOptions.this, nearbyMess.class);
+            startActivity(intent);
+        }
+        if(v==logout)
+        {
+            Intent intent=new Intent(this, Login.class);
             startActivity(intent);
         }
     }
