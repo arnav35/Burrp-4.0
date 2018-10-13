@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
+import static android.R.attr.name;
+import static android.R.attr.password;
+import static android.R.attr.preferenceCategoryStyle;
+
 public class Login extends AppCompatActivity implements View.OnClickListener{
 
     private EditText nameEdit,passEdit;
@@ -38,6 +43,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     private TextView forgetPassword;
     private DatabaseReference databaseReferenceOwner = FirebaseDatabase.getInstance().getReference("Owner");
     private DatabaseReference databaseReferenceStudent = FirebaseDatabase.getInstance().getReference("Student");
+    SharedPreferences.Editor editor;
+    SharedPreferences preferences;
+    String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,17 +56,75 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         nameEdit=(EditText) findViewById(R.id.LoginNameEdit);
         passEdit=(EditText) findViewById(R.id.LoginPasswordEdit);
         forgetPassword=(TextView)findViewById(R.id.forgetPassword);
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY,17);
-        calendar.set(Calendar.MINUTE,20);
-        calendar.set(Calendar.SECOND,1);
-        Intent intent=new Intent(getApplicationContext(),Notification_receiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager alarmManager =(AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
-
         firebaseAuth=FirebaseAuth.getInstance();
+
+        preferences=getApplicationContext().getSharedPreferences("MyPref",0);
+        editor=preferences.edit();
+
+        if (!preferences.getBoolean("firstime",false))
+        {
+            String name=preferences.getString("email","false");
+            String password=preferences.getString("password","false");
+            Log.d("Burrpy",name);
+            Log.d("Burrpy",password);
+            if(name!=null && password!=null) {
+                    if (preferences.getString("type","false").equals("owner")) {
+                        firebaseAuth.signInWithEmailAndPassword(name, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                                    uid = firebaseUser.getUid();
+
+                                    Toast.makeText(Login.this, "Login successful ", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(Login.this, OwnerProfile.class);
+                                    intent.putExtra("uid", uid);
+                                    startActivity(intent);
+                                }
+                            }
+                        });
+                    }
+                    if(preferences.getString("type","false").equals("student"))
+                    {
+                        firebaseAuth.signInWithEmailAndPassword(name, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                                        uid = firebaseUser.getUid();
+                                        Toast.makeText(Login.this, "Login successful ", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(Login.this, StudentOptions.class);
+                                        startActivity(intent);
+                                }
+                            }
+                        });
+                    }
+            }
+            Calendar calendar = Calendar.getInstance();
+
+            calendar.set(Calendar.HOUR_OF_DAY, 0);
+            calendar.set(Calendar.MINUTE, 50);
+            calendar.set(Calendar.SECOND, 0);
+
+            if (preferences.getString("type","false").equals("owner")) {
+                Intent intent = new Intent(getApplicationContext(), Notification_receiver.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+            }
+            if (preferences.getString("type","false").equals("student")) {
+                Intent intent = new Intent(getApplicationContext(), Notification_Student.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+            }
+
+            editor.putBoolean("firsttime",true);
+            editor.apply();
+        }
+
         LoginButtOwner.setOnClickListener(this);
         LoginButtStudent.setOnClickListener(this);
         forgetPassword.setOnClickListener(this);
@@ -80,7 +146,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-
+                        editor.putString("email",nameEdit.getText().toString().trim());
+                        editor.putString("password",passEdit.getText().toString().trim());
+                        editor.putString("type","owner");
+                        editor.apply();
                         progressDialog.dismiss();
                         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                         final String uid = firebaseUser.getUid();
@@ -148,6 +217,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
+                        editor.putString("email",nameEdit.getText().toString().trim());
+                        editor.putString("password",passEdit.getText().toString().trim());
+                        editor.putString("type","student");
+                        editor.apply();
                         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                         final String uid = firebaseUser.getUid();
                         databaseReferenceStudent.addListenerForSingleValueEvent(new ValueEventListener() {

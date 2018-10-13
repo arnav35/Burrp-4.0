@@ -30,10 +30,13 @@
         android:ems="10"
         android:id="@+id/noOfItem" />
 
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/addBhaji"
+        android:background="@drawable/button_background"
+
         android:text="Save"
         android:layout_marginTop="20dp" />
 
@@ -41,6 +44,8 @@
         android:id="@+id/btsave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+
         android:text="Add Bhaji"
         android:layout_marginTop="10dp" />
 

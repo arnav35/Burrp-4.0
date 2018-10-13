@@ -2,6 +2,7 @@
 package com.example.arnavdesai.burrp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -146,6 +147,12 @@ public class OwnerProfile extends AppCompatActivity implements View.OnClickListe
 
         }
         if(logout==v){
+            SharedPreferences preferences=getApplicationContext().getSharedPreferences("MyPref",0);
+            SharedPreferences.Editor editor=preferences.edit();
+            editor.remove("email");
+            editor.remove("password");
+            editor.commit();
+
             Intent intent=new Intent(OwnerProfile.this,MainActivity.class);
             startActivity(intent);
         }

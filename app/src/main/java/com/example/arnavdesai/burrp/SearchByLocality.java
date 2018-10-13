@@ -36,13 +36,13 @@ public class SearchByLocality extends AppCompatActivity implements View.OnClickL
     String[] ratingArrayFinal;
     ListView listview;
     private Spinner spinner;
-    private EditText bhajiEdit;
     private Button search ;
     private ImageView back;
     private DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
     private DatabaseReference referenceBhaji = FirebaseDatabase.getInstance().getReference("Daily Menu");
     int count=0;
     List<String> localities;
+    String requestedLocality;
     ArrayAdapter<String> adapter;
 
     @Override
@@ -50,11 +50,10 @@ public class SearchByLocality extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_by_locality);
         spinner = (Spinner) findViewById(R.id.spinner2);
-        bhajiEdit = (EditText) findViewById(R.id.editbhaji);
         search = (Button) findViewById(R.id.buttonSearch);
         search.setOnClickListener(this);
         back=(ImageView)findViewById(R.id.backLoca);
-        //back.setOnClickListener(this);
+        back.setOnClickListener(this);
 
         localities = new ArrayList<String>();  // a list to be displayed in the spinner
         localities.add("Sahakarnagar");
@@ -67,6 +66,20 @@ public class SearchByLocality extends AppCompatActivity implements View.OnClickL
     }
 
     public void functionOne() {
+
+        databaseReference=FirebaseDatabase.getInstance().getReference("Owner");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                getCount(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         databaseReference = FirebaseDatabase.getInstance().getReference("Rating");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -113,14 +126,10 @@ public class SearchByLocality extends AppCompatActivity implements View.OnClickL
 
     private void showData(DataSnapshot dataSnapshot) throws NullPointerException {
 
-        count=(int) dataSnapshot.getChildrenCount();
         nameArray=new String[count];
         addressArray=new String[count];
         ratingArrayFinal=new String[count];
 
-        final String requestedBhaji = bhajiEdit.getText().toString();
-
-        String requestedLocality = spinner.getSelectedItem().toString();  //getting spinner value.
 
         final int[] i = {0};
         final int[] total = {0};
@@ -129,12 +138,12 @@ public class SearchByLocality extends AppCompatActivity implements View.OnClickL
 
             final Owner owner = ds.getValue(Owner.class);
 
-            if (owner.locality == requestedLocality) {  //if that owner's locality is requested.
+            if (owner.locality.equals(requestedLocality)) {  //if that owner's locality is requested.
                 String key = ds.getKey();   //getting key for that owner to search in DailyMenu section.
                 //DatabaseReference referenceToOwnerBhaji = referenceBhaji.child(key).child("bhaji");
+
                 DatabaseReference userNameRef = referenceBhaji.child(key);
                 userNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
-
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         MenuCard m = dataSnapshot.getValue(MenuCard.class);
@@ -143,14 +152,10 @@ public class SearchByLocality extends AppCompatActivity implements View.OnClickL
                         addressArray[i[0]] = new String();
                         ratingArrayFinal[i[0]] = new String();
 
-                        List<String> ownerBhaji = (List<String>) m.getBhaji();   //getting bhaji of that owner.
-
-                        if (ownerBhaji.contains(requestedBhaji)) {              //if that string contains requested bhaji
-                            nameArray[i[0]] = owner.getMessName();       //add to list that owner and address.
-                            addressArray[i[0]] = owner.getAddress();
-                            ratingArrayFinal[i[0]] = ratingArray[total[0]];
-                            i[0]++;
-                        }
+                        nameArray[i[0]] = owner.getMessName();       //add to list that owner and address.
+                        addressArray[i[0]] = owner.getAddress();
+                        ratingArrayFinal[i[0]] = ratingArray[total[0]];
+                        i[0]++;
                         total[0]++;
                     }
 
@@ -165,21 +170,25 @@ public class SearchByLocality extends AppCompatActivity implements View.OnClickL
                 });
 
             }
-
             CustomListAdapter2 customListAdapter = new CustomListAdapter2(this, nameArray, addressArray, ratingArrayFinal);
             listview = (ListView) findViewById(R.id.listviewID);
             listview.setAdapter(customListAdapter);
         }
     }
 
-    void getCount(DataSnapshot dataSnapshot) throws NullPointerException
-    {
-        count=(int)dataSnapshot.getChildrenCount();
+    void getCount(DataSnapshot dataSnapshot) throws NullPointerException {
+        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+            if(ds.getValue(Owner.class).locality.equals(requestedLocality))
+            {
+                count = count + 1;
+            }
+        }
     }
 
     @Override
     public void onClick(View view) {
         if(view == search){
+            requestedLocality = spinner.getSelectedItem().toString();  //getting spinner value.
             functionOne();
             functionTwo();
         }

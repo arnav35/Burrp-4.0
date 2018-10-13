@@ -321,15 +321,7 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
         }
         if(v==back)
         {
-            if(id==1){
-                Intent intent=new Intent(StudentMenu.this, MessList.class);
-                startActivity(intent);
-            }
-            if(id==2)
-            {
-                Intent intent=new Intent(StudentMenu.this, Menu.class);
-                startActivity(intent);
-            }
+            finish();
         }
     }
 
