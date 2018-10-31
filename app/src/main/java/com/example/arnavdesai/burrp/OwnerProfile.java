@@ -6,10 +6,12 @@ import android.content.SharedPreferences;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,11 +31,11 @@ public class OwnerProfile extends AppCompatActivity implements View.OnClickListe
     private TextView messName, messAddress, messPhone,ownerName;
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth firebaseAuth;
-    private TextView bhaji1,bhaji2,bhaji3;
+    private TextView bhaji1,bhaji2,bhaji3,bhaji4;
     private DatabaseReference databaseReference,databaseReference1;
     private FirebaseUser firebaseUser;
     private String userID,messname;
-    private Button update, logout,menu,showGraph,showMonthly;
+    private Button update, logout,menu,showGraph,showMonthly,showReviews;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,15 +48,15 @@ public class OwnerProfile extends AppCompatActivity implements View.OnClickListe
         menu=(Button) findViewById(R.id.menucard);
         update = (Button) findViewById(R.id.update_menu);
         logout = (Button) findViewById(R.id.log_out);
-
+        showReviews=(Button)findViewById(R.id.show1Review);
         update.setOnClickListener(this);
         logout.setOnClickListener(this);
         menu.setOnClickListener(this);
-
+        showReviews.setOnClickListener(this);
         bhaji1=(TextView)findViewById(R.id.bhaji1);
         bhaji2=(TextView)findViewById(R.id.bhaji2);
         bhaji3=(TextView)findViewById(R.id.bhaji3);
-
+        bhaji4=(TextView)findViewById(R.id.bhaji4);
         showGraph=(Button) findViewById(R.id.showGraph);
         showGraph.setOnClickListener(this);
         showMonthly=(Button) findViewById(R.id.showMonthly);
@@ -91,30 +93,40 @@ public class OwnerProfile extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
-    private void showData1(DataSnapshot dataSnapshot)throws NullPointerException{
+    private void showData1(DataSnapshot dataSnapshot)throws NullPointerException,ArrayIndexOutOfBoundsException{
 
 
         MenuCard obj=dataSnapshot.child(userID).getValue(MenuCard.class);
+        Log.d("messname",userID);
 
         int count;
-        List<String> bhajiString=obj.getBhaji();
-        count=bhajiString.size();
-
-        //dailyMenu=new TextView[count];
-
-        int i=0;
-
-        if(i<=count) {
-            bhaji1.setText(bhajiString.get(0));
-            i++;
+        if(obj.getBhaji()==null){
+            Toast.makeText(OwnerProfile.this,"You have not set any bhaji",Toast.LENGTH_SHORT).show();
         }
-        if(i<=count) {
-            bhaji2.setText(bhajiString.get(1));
-            i++;
-        }
-        if(i<count) {
-            bhaji3.setText(bhajiString.get(2));
-            i++;
+        else {
+            List<String> bhajiString = obj.getBhaji();
+            count = bhajiString.size();
+
+            //dailyMenu=new TextView[count];
+
+            int i = 0;
+
+            if (i <= count) {
+                bhaji1.setText(bhajiString.get(0));
+                i++;
+            }
+            if (i < count) {
+                bhaji2.setText(bhajiString.get(1));
+                i++;
+            }
+            if (i < count) {
+                bhaji3.setText(bhajiString.get(2));
+                i++;
+            }
+            if (i < count) {
+                bhaji4.setText(bhajiString.get(3));
+                i++;
+            }
         }
     }
 
@@ -145,6 +157,11 @@ public class OwnerProfile extends AppCompatActivity implements View.OnClickListe
             intent.putExtra("uid",userID);
             startActivity(intent);
 
+        }
+        if(showReviews==v){
+            Intent intent=new Intent(OwnerProfile.this,showReview.class);
+            intent.putExtra("uid",messname);
+            startActivity(intent);
         }
         if(logout==v){
             SharedPreferences preferences=getApplicationContext().getSharedPreferences("MyPref",0);

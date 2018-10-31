@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,7 +39,8 @@ public class SearchByLocality extends AppCompatActivity implements View.OnClickL
     ListView listview;
     private Spinner spinner;
     private Button search ;
-    private ImageView back;
+    private TextView norecordsfound;
+    private ImageView back,reFresh;
     private DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference();
     private DatabaseReference referenceBhaji = FirebaseDatabase.getInstance().getReference("Daily Menu");
     int count=0;
@@ -51,11 +54,15 @@ public class SearchByLocality extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_search_by_locality);
         spinner = (Spinner) findViewById(R.id.spinner2);
         search = (Button) findViewById(R.id.buttonSearch);
+        norecordsfound=(TextView)findViewById(R.id.norecord);
         search.setOnClickListener(this);
         back=(ImageView)findViewById(R.id.backLoca);
+        reFresh=(ImageView)findViewById(R.id.refresh);
         back.setOnClickListener(this);
-
+        reFresh.setOnClickListener(this);
+        norecordsfound.setVisibility(View.INVISIBLE);
         localities = new ArrayList<String>();  // a list to be displayed in the spinner
+        localities.add("select");
         localities.add("Sahakarnagar");
         localities.add("PVG College");
         localities.add("VIT College");
@@ -133,6 +140,7 @@ public class SearchByLocality extends AppCompatActivity implements View.OnClickL
 
         final int[] i = {0};
         final int[] total = {0};
+        norecordsfound.setVisibility(View.VISIBLE);
 
         for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
@@ -141,6 +149,7 @@ public class SearchByLocality extends AppCompatActivity implements View.OnClickL
             if (owner.locality.equals(requestedLocality)) {  //if that owner's locality is requested.
                 String key = ds.getKey();   //getting key for that owner to search in DailyMenu section.
                 //DatabaseReference referenceToOwnerBhaji = referenceBhaji.child(key).child("bhaji");
+                norecordsfound.setVisibility(View.INVISIBLE);
 
                 DatabaseReference userNameRef = referenceBhaji.child(key);
                 userNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -168,11 +177,11 @@ public class SearchByLocality extends AppCompatActivity implements View.OnClickL
 
                     }
                 });
-
+                CustomListAdapter2 customListAdapter = new CustomListAdapter2(this, nameArray, addressArray, ratingArrayFinal);
+                listview = (ListView) findViewById(R.id.listviewID);
+                listview.setAdapter(customListAdapter);
+                listview.setVisibility(View.VISIBLE);
             }
-            CustomListAdapter2 customListAdapter = new CustomListAdapter2(this, nameArray, addressArray, ratingArrayFinal);
-            listview = (ListView) findViewById(R.id.listviewID);
-            listview.setAdapter(customListAdapter);
         }
     }
 
@@ -188,14 +197,26 @@ public class SearchByLocality extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         if(view == search){
-            requestedLocality = spinner.getSelectedItem().toString();  //getting spinner value.
-            functionOne();
-            functionTwo();
+            requestedLocality = spinner.getSelectedItem().toString();
+            if(requestedLocality=="select"){
+                listview.setVisibility(View.INVISIBLE);
+                Toast.makeText(SearchByLocality.this,"Please choose the locality",Toast.LENGTH_SHORT).show();
+            }
+            else {//getting spinner value.
+
+                functionOne();
+                functionTwo();
+            }
+
         }
         if(view==back)
         {
             Intent intent=new Intent(SearchByLocality.this, StudentOptions.class);
             startActivity(intent);
+        }
+        if(view==reFresh){
+            listview.setVisibility(View.INVISIBLE);
+            norecordsfound.setVisibility(View.INVISIBLE);
         }
     }
 }

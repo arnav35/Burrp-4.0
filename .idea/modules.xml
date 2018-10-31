@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Burrp.iml" filepath="$PROJECT_DIR$/Burrp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Burrp-4.0.iml" filepath="$PROJECT_DIR$/Burrp-4.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -65,7 +65,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/EmailText"
         android:gravity="center"
-        android:textColor="@android:color/holo_green_light" />
+        android:textColor="@android:color/holo_green_light"
+        android:layout_marginBottom="15dp" />
 
     <Button
         android:text="@string/AddMenu"

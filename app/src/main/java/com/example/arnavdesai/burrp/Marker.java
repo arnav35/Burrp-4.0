@@ -49,6 +49,7 @@ public class Marker extends FragmentActivity implements OnMapReadyCallback {
         mLocation location=new mLocation(lat,log);
 
         databaseReference.child("Mess Location").child(uid).setValue(location);
+        finish();
     }
 
     //access to permsions
@@ -131,7 +132,6 @@ public class Marker extends FragmentActivity implements OnMapReadyCallback {
                             @Override
                             public void onClick(View v) {
                                 addtoDatabase();
-                                finish();
                             }
                         });
                     }
