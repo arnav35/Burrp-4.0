@@ -95,5 +95,4 @@ public class DisplayMenu extends AppCompatActivity implements View.OnClickListen
             startActivity(intent);
         }
     }
-
 }

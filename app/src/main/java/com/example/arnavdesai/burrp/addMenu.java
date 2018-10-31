@@ -56,13 +56,13 @@ public class addMenu extends AppCompatActivity implements View.OnClickListener{
 
         //Spinner sp=(Spinner)findViewById(id.spinner);
 
-
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);  //setting view of dropdown
         spinmenu1.setAdapter(dataAdapter);
         spinmenu2.setAdapter(dataAdapter);
         spinmenu3.setAdapter(dataAdapter);
         spinmenu4.setAdapter(dataAdapter);
+
         List<String> menuPrice = new ArrayList<String>();  // a list to be displayed in the spinner
         menuPrice.add("select");
         menuPrice.add("\u20B9 5");
@@ -87,9 +87,6 @@ public class addMenu extends AppCompatActivity implements View.OnClickListener{
         enter.setOnClickListener(this);
 
     }
-
-
-
 
     private void addtoDatabase() throws NullPointerException
     {
@@ -123,20 +120,17 @@ public class addMenu extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View v)
     {
-
-
         if(v == enter)
         {
             if(spinmenu1.getSelectedItem().toString()=="select"&&spinmenu2.getSelectedItem().toString()=="select"&&spinmenu3.getSelectedItem().toString()=="select"&&spinmenu4.getSelectedItem().toString()=="select"){
-                Toast.makeText(addMenu.this,"Plase choose the menu ",Toast.LENGTH_SHORT).show();
+                Toast.makeText(addMenu.this,"Please choose the menu ",Toast.LENGTH_SHORT).show();
             }
             else if(spinprice1.getSelectedItem().toString()=="select"&&spinprice2.getSelectedItem().toString()=="select"&&spinprice3.getSelectedItem().toString()=="select"&&spinprice4.getSelectedItem().toString()=="select"){
-                Toast.makeText(addMenu.this,"Plase choose the price",Toast.LENGTH_SHORT).show();
+                Toast.makeText(addMenu.this,"Please choose the price",Toast.LENGTH_SHORT).show();
             }
             else {
                 addtoDatabase();
             }
-
         }
     }
 }

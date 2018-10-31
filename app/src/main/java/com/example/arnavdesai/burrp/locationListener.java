@@ -4,10 +4,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
 
-/**
- * Created by Arnav Desai on 9/29/2018.
- */
-
 
 public class locationListener implements LocationListener {
     public static Location location;

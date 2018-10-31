@@ -64,7 +64,6 @@ public class CustomListAdapter extends ArrayAdapter{
                 context.startActivity(intent);
             }
         });
-
         return rowView;
 
     }

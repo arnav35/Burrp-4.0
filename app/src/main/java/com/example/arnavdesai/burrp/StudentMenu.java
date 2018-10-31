@@ -265,7 +265,12 @@ public class StudentMenu extends AppCompatActivity implements View.OnClickListen
                 countofStudent=countofStudent+1;
 
                 dataRating=dataSnapshot.child(userID).getValue(RatingReview.class).getAvgRating();
-                newRatingValue=(ratingBar.getRating()+dataRating)/2;
+                if(dataRating!=0) {
+                    newRatingValue = (ratingBar.getRating() + dataRating) / 2;
+                }
+                else {
+                    newRatingValue = ratingBar.getRating();
+                }
 
                 Map<String,Object> mobj=new HashMap<String,Object>();
                 RatingReview obj=new RatingReview(newRatingValue,countofStudent);

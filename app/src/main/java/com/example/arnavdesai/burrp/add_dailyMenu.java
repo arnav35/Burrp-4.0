@@ -41,6 +41,7 @@ public class add_dailyMenu extends AppCompatActivity  implements View.OnClickLis
     EditText editdailytbhaji,editbhaji2,editbhaji3,editbhaji4;
     String[] bhaji;
     int count=0,flag=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +69,7 @@ public class add_dailyMenu extends AppCompatActivity  implements View.OnClickLis
         editbhaji2.setVisibility(View.INVISIBLE);
         editbhaji3.setVisibility(View.INVISIBLE);
         editbhaji4.setVisibility(View.INVISIBLE);
+
         List<String>dailybhaji=new ArrayList<>();
         dailybhaji.add("select");
         dailybhaji.add("batata");
@@ -79,6 +81,7 @@ public class add_dailyMenu extends AppCompatActivity  implements View.OnClickLis
         dailybhaji.add("pitale");
         dailybhaji.add("patta-kobi");
         dailybhaji.add("wange");
+
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,dailybhaji);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         bhaji1.setAdapter(dataAdapter);
@@ -88,13 +91,12 @@ public class add_dailyMenu extends AppCompatActivity  implements View.OnClickLis
 
     }
 
-
     @Override
     public void onClick(View v) {
 
         if(v ==save){
             if(bhaji1.getSelectedItem().toString()=="select"&&bhaji2.getSelectedItem().toString()=="select"&&bhaji3.getSelectedItem().toString()=="select"&&bhaji4.getSelectedItem().toString()=="select"&&flag==0){
-                Toast.makeText(add_dailyMenu.this,"Plase choose atleast one bhaji ",Toast.LENGTH_SHORT).show();
+                Toast.makeText(add_dailyMenu.this,"Please choose atleast one bhaji ",Toast.LENGTH_SHORT).show();
             }
             else {
                 addtodatabase();
@@ -151,7 +153,7 @@ public class add_dailyMenu extends AppCompatActivity  implements View.OnClickLis
         }
         if(flag==1){
             if(editdailytbhaji.getText().toString().trim().length()==0){
-                Toast.makeText(add_dailyMenu.this,"Plase edit the bhaji ",Toast.LENGTH_SHORT).show();
+                Toast.makeText(add_dailyMenu.this,"Please edit the bhaji ",Toast.LENGTH_SHORT).show();
             }
             else {
                 bhajiString.add(0, editdailytbhaji.getText().toString());
