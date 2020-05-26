@@ -67,6 +67,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             String password=preferences.getString("password","false");
             Log.d("Burrpy",name);
             Log.d("Burrpy",password);
+
             if(name!=null && password!=null) {
                     if (preferences.getString("type","false").equals("owner")) {
                         firebaseAuth.signInWithEmailAndPassword(name, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -113,6 +114,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
             }
+
             if (preferences.getString("type","false").equals("student")) {
                 Intent intent = new Intent(getApplicationContext(), Notification_Student.class);
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);

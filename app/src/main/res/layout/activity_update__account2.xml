@@ -8,47 +8,35 @@
     android:orientation="vertical">
 
 
-    <Button
-        android:id="@+id/upmessname"
+    <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="20dp"
-        android:text="Update Mess Name "
-        android:background="@drawable/button_background"
-        tools:text="Change Mess Name"
-        android:layout_gravity="center" />
+        android:layout_height="75dp">
 
-    <Button
-        android:id="@+id/upcontactno"
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change Name" />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update Contact No." />
+
+        <android.support.design.widget.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update Address" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tabItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change Password" />
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:text="Update Contact No"
-        android:background="@drawable/button_background"
-        tools:text="Update Contact Number"
-        android:layout_gravity="center" />
-
-    <Button
-        android:id="@+id/upAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:text="Update Mess Address"
-        tools:text="Update Mess Address"
-        android:background="@drawable/button_background"
-
-        android:layout_gravity="center" />
-
-    <Button
-        android:id="@+id/upPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:text="Update Password"
-        tools:text="Update Password"
-        android:background="@drawable/button_background"
-
-        android:layout_gravity="center" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>
